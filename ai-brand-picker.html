@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<!-- @dsCard group="Components" name="AI · Brand asset picker" subtitle="Constrain a generation to brand assets" -->
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Brand asset picker</title>
+<link rel="stylesheet" href="_card.css">
+<style>
+  .picker { background: var(--lift); border: 1px solid var(--hairline); border-radius: 16px; box-shadow: var(--shadow-e3); overflow: hidden; }
+  .picker header { padding: 16px 20px; display: flex; align-items: center; gap: 12px; border-bottom: 1px solid var(--hairline); }
+  .picker header h4 { font-family: var(--font-display); font-size: 15px; font-weight: 500; margin: 0; color: var(--ink); }
+  .picker header .meta { font-family: var(--font-mono); font-size: 11px; color: var(--fg-3); }
+  .picker .tabs { display: flex; padding: 0 20px; gap: 24px; border-bottom: 1px solid var(--hairline); }
+  .picker .tabs a { padding: 10px 0; font-size: 13px; color: var(--fg-3); cursor: pointer; border-bottom: 2px solid transparent; position: relative; top: 1px; }
+  .picker .tabs a.active { color: var(--ink); border-bottom-color: var(--ink); }
+  .picker .body { padding: 18px 20px; }
+  .group { display: flex; flex-direction: column; gap: 8px; margin-bottom: 18px; }
+  .group h5 { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.7px; text-transform: uppercase; color: var(--fg-3); margin: 0; }
+  .grid-c { display: grid; grid-template-columns: repeat(8, 1fr); gap: 8px; }
+  .sw { aspect-ratio: 1; border-radius: 10px; cursor: pointer; position: relative; }
+  .sw.picked { box-shadow: 0 0 0 2px var(--lift), 0 0 0 4px var(--solar); }
+  .sw .label { position: absolute; bottom: -16px; left: 0; right: 0; text-align: center; font-family: var(--font-mono); font-size: 9px; color: var(--fg-3); }
+
+  .type-row { display: flex; align-items: center; gap: 16px; padding: 10px 12px; border: 1px solid var(--hairline); border-radius: 10px; cursor: pointer; }
+  .type-row.picked { border-color: var(--solar); background: rgba(255,63,0,0.04); }
+  .type-row .specimen { font-family: var(--font-display); font-size: 22px; font-weight: 400; color: var(--ink); flex: 1; }
+  .type-row.mono .specimen { font-family: var(--font-mono); font-size: 16px; }
+  .type-row .name { font-family: var(--font-mono); font-size: 11px; color: var(--fg-3); }
+  .type-row .check { width: 18px; height: 18px; border-radius: 999px; border: 1.5px solid var(--hairline-strong); flex-shrink: 0; }
+  .type-row.picked .check { background: var(--solar); border-color: var(--solar); position: relative; }
+  .type-row.picked .check::after { content: ""; position: absolute; top: 4px; left: 3px; width: 8px; height: 4px; border-left: 1.5px solid #fff; border-bottom: 1.5px solid #fff; transform: rotate(-45deg); }
+
+  .grid-l { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
+  .logo { aspect-ratio: 16/9; border-radius: 10px; background: var(--paper); border: 1px solid var(--hairline); display: grid; place-items: center; cursor: pointer; padding: 10px; }
+  .logo.dark { background: var(--obsidian); }
+  .logo.mesh { background: var(--mesh-warm); position: relative; }
+  .logo img { max-width: 100%; max-height: 100%; }
+
+  footer { padding: 14px 20px; border-top: 1px solid var(--hairline); display: flex; justify-content: space-between; align-items: center; background: var(--paper); }
+  footer .summary { font-size: 12px; color: var(--fg-2); }
+  footer .summary b { color: var(--ink); font-weight: 500; }
+  .btn { padding: 8px 14px; border-radius: 8px; font-family: var(--font-body); font-size: 13px; cursor: pointer; border: 0; }
+  .btn.primary { background: var(--ink); color: var(--fg-on-dark-1); }
+  .btn.ghost { background: transparent; color: var(--ink); }
+</style>
+</head>
+<body>
+
+<div class="card col" style="gap: 14px;">
+  <p class="eyebrow">Brand asset picker · the design system as a product feature</p>
+
+  <div class="picker">
+    <header>
+      <h4>Lock the brand for this generation</h4>
+      <span class="meta">Apex Civic v3.2 · 142 assets</span>
+    </header>
+    <div class="tabs">
+      <a class="active">Colors</a>
+      <a>Type</a>
+      <a>Logos</a>
+      <a>Imagery</a>
+      <a>Voice</a>
+    </div>
+    <div class="body">
+      <div class="group">
+        <h5>Allowed palette · pick 2–5</h5>
+        <div class="grid-c">
+          <span class="sw picked" style="background: var(--amber);"></span>
+          <span class="sw picked" style="background: var(--solar);"></span>
+          <span class="sw picked" style="background: var(--blush);"></span>
+          <span class="sw picked" style="background: var(--ink);"></span>
+          <span class="sw picked" style="background: var(--paper);"></span>
+          <span class="sw" style="background: var(--orchid);"></span>
+          <span class="sw" style="background: var(--mint);"></span>
+          <span class="sw" style="background: var(--sky);"></span>
+        </div>
+      </div>
+
+      <div class="group">
+        <h5>Type</h5>
+        <div style="display: flex; flex-direction: column; gap: 8px;">
+          <div class="type-row picked"><span class="specimen">Replicate your team</span><span class="name">Stack Sans Headline · 400</span><span class="check"></span></div>
+          <div class="type-row mono picked"><span class="specimen">NOW IN PRIVATE BETA</span><span class="name">Fragment Mono · 11px caps</span><span class="check"></span></div>
+        </div>
+      </div>
+
+      <div class="group" style="margin-bottom: 0;">
+        <h5>Logo lockup</h5>
+        <div class="grid-l">
+          <div class="logo"><img src="../assets/socialpaint-dark.png" alt=""></div>
+          <div class="logo dark"><img src="../assets/socialpaint-light-color.png" alt=""></div>
+          <div class="logo mesh"><img src="../assets/socialpaint-light.png" alt=""></div>
+          <div class="logo"><img src="../assets/socialpaint-mark-color.png" alt="" style="max-width: 28%;"></div>
+        </div>
+      </div>
+    </div>
+    <footer>
+      <div class="summary">Locked: <b>5 colors · 2 type roles · 4 logo variants</b>. Painter will refuse anything outside this set.</div>
+      <div class="row" style="gap: 8px;">
+        <button class="btn ghost">Reset</button>
+        <button class="btn primary">Apply</button>
+      </div>
+    </footer>
+  </div>
+</div>
+
+</body>
+</html>

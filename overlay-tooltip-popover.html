@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<!-- @dsCard group="Components" name="Overlay · Tooltip & popover" subtitle="Tooltip (small, fast) · Popover (rich, clickable)" -->
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Tooltip & popover</title>
+<link rel="stylesheet" href="_card.css">
+<style>
+  .row-demo { display: flex; gap: 60px; flex-wrap: wrap; }
+  .anchor { position: relative; padding: 10px 16px; background: var(--lift); border: 1px solid var(--hairline-strong); border-radius: 8px; font-size: 13px; color: var(--ink); cursor: pointer; }
+  .tip { position: absolute; padding: 7px 10px; background: var(--ink); color: var(--fg-on-dark-1); border-radius: 6px; font-size: 12px; font-weight: 400; box-shadow: var(--shadow-e3); white-space: nowrap; }
+  .tip::after { content: ""; position: absolute; width: 8px; height: 8px; background: var(--ink); transform: rotate(45deg); }
+  .tip.top { bottom: calc(100% + 10px); left: 50%; transform: translateX(-50%); }
+  .tip.top::after { bottom: -3px; left: 50%; transform: translateX(-50%) rotate(45deg); }
+  .tip.right { left: calc(100% + 10px); top: 50%; transform: translateY(-50%); }
+  .tip.right::after { left: -3px; top: 50%; transform: translateY(-50%) rotate(45deg); }
+  .tip kbd { display: inline-block; margin-left: 6px; font-family: var(--font-mono); font-size: 10px; padding: 1px 5px; background: rgba(255,255,255,0.12); border-radius: 3px; }
+
+  /* Popover */
+  .pop-row { display: flex; gap: 60px; flex-wrap: wrap; margin-top: 40px; }
+  .popover { position: absolute; background: var(--lift); border: 1px solid var(--hairline); border-radius: 12px; box-shadow: var(--shadow-e3); padding: 14px; width: 260px; }
+  .popover::after { content: ""; position: absolute; width: 10px; height: 10px; background: var(--lift); border-left: 1px solid var(--hairline); border-top: 1px solid var(--hairline); transform: rotate(45deg); top: -6px; left: 28px; }
+  .popover h5 { font-family: var(--font-display); font-size: 13px; font-weight: 500; margin: 0 0 4px; color: var(--ink); }
+  .popover p { font-size: 12px; color: var(--fg-2); line-height: 1.55; margin: 0; }
+  .popover footer { display: flex; gap: 8px; margin-top: 12px; padding-top: 10px; border-top: 1px solid var(--hairline); }
+  .popover button { padding: 6px 10px; border-radius: 6px; border: 0; font-family: var(--font-body); font-size: 12px; cursor: pointer; }
+  .popover button.p { background: var(--ink); color: var(--fg-on-dark-1); }
+  .popover button.g { background: transparent; color: var(--fg-2); }
+
+  /* hover card */
+  .hover-card { width: 280px; }
+  .hover-card .avatar { width: 44px; height: 44px; border-radius: 999px; background: var(--mesh-warm); display: grid; place-items: center; font-family: var(--font-display); font-weight: 500; color: #fff; }
+  .hover-card .meta { font-family: var(--font-mono); font-size: 10px; color: var(--fg-3); margin-top: 8px; letter-spacing: 0.3px; }
+</style>
+</head>
+<body>
+
+<div class="card col" style="gap: 28px;">
+  <p class="eyebrow">Tooltip · short hover label, 200ms delay</p>
+
+  <div class="row-demo">
+    <div style="position: relative; padding-top: 50px;">
+      <button class="anchor">Save draft</button>
+      <span class="tip top">Ships to your queue <kbd>⌘S</kbd></span>
+    </div>
+    <div style="position: relative; padding-top: 50px;">
+      <button class="anchor" style="display: grid; place-items: center; width: 36px; height: 36px; padding: 0;">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M15 4V2"/><path d="M15 16v-2"/><path d="M8 9h2"/><path d="M20 9h2"/><path d="M17.8 11.8 19 13"/><path d="M17.8 6.2 19 5"/><path d="m3 21 9-9"/><path d="M12.2 6.2 11 5"/></svg>
+      </button>
+      <span class="tip top">Regenerate</span>
+    </div>
+    <div style="position: relative; padding-top: 8px;">
+      <button class="anchor">Brand voice</button>
+      <span class="tip right">Trained from 142 of your assets</span>
+    </div>
+  </div>
+
+  <hr style="margin: 0;">
+
+  <p class="eyebrow">Popover · richer content, click to open, action footer</p>
+  <div class="pop-row">
+    <div style="position: relative; padding-top: 110px;">
+      <button class="anchor">Share kit</button>
+      <div class="popover" style="top: 50px; left: 0;">
+        <h5>Anyone with the link</h5>
+        <p>People in your domain (@apex.com) can view but not edit. Toggle to invite-only.</p>
+        <footer>
+          <button class="g">Copy link</button>
+          <button class="p" style="margin-left: auto;">Done</button>
+        </footer>
+      </div>
+    </div>
+
+    <div style="position: relative; padding-top: 130px;">
+      <button class="anchor">@dani</button>
+      <div class="popover hover-card" style="top: 50px; left: 0;">
+        <div style="display: flex; gap: 12px; align-items: center;">
+          <div class="avatar">D</div>
+          <div>
+            <h5>Dani Castillo</h5>
+            <p>Head of Brand · Apex Civic</p>
+          </div>
+        </div>
+        <p class="meta">Owns 4 projects · Last active 2h ago</p>
+        <footer>
+          <button class="g">Message</button>
+          <button class="p" style="margin-left: auto;">View profile</button>
+        </footer>
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

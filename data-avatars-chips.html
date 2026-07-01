@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<!-- @dsCard group="Components" name="Data · Avatars, chips & tags" subtitle="Avatars · stacks · chips · status badges" -->
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Avatars & chips</title>
+<link rel="stylesheet" href="_card.css">
+<style>
+  .panel { background: var(--lift); border: 1px solid var(--hairline); border-radius: 14px; padding: 22px 24px; }
+  h5 { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.7px; text-transform: uppercase; color: var(--fg-3); margin: 0 0 16px; }
+
+  .av { display: inline-grid; place-items: center; border-radius: 999px; color: #fff; font-family: var(--font-display); font-weight: 500; }
+  .av.xs { width: 20px; height: 20px; font-size: 9px; }
+  .av.sm { width: 28px; height: 28px; font-size: 11px; }
+  .av.md { width: 36px; height: 36px; font-size: 13px; }
+  .av.lg { width: 48px; height: 48px; font-size: 17px; }
+  .av.xl { width: 64px; height: 64px; font-size: 22px; }
+  .av-mesh { background: var(--mesh-warm); }
+  .av-orchid { background: var(--orchid); color: var(--ink); }
+  .av-mint { background: var(--mint); color: var(--ink); }
+  .av-sky { background: var(--sky); color: var(--ink); }
+  .av-sand { background: var(--sand); color: var(--ink); }
+  .av-ink { background: var(--ink); }
+  .av.with-status { position: relative; }
+  .av .dot { position: absolute; bottom: -1px; right: -1px; width: 12px; height: 12px; border-radius: 999px; background: var(--success); border: 2px solid var(--lift); }
+  .av .dot.off { background: var(--fg-4); }
+  .av .dot.away { background: var(--amber); }
+
+  .stack { display: inline-flex; }
+  .stack > .av { margin-right: -8px; border: 2px solid var(--lift); }
+  .stack > .more { display: inline-grid; place-items: center; border-radius: 999px; border: 2px solid var(--lift); background: var(--paper-warm); color: var(--fg-2); font-family: var(--font-mono); font-size: 11px; }
+  .stack > .more.sm { width: 28px; height: 28px; }
+
+  /* Chips & tags */
+  .chip { display: inline-flex; align-items: center; gap: 6px; padding: 4px 10px; border-radius: 999px; font-size: 12px; line-height: 1.4; }
+  .chip.solid { background: var(--ink); color: var(--fg-on-dark-1); }
+  .chip.light { background: var(--paper-warm); color: var(--ink); }
+  .chip.dot::before { content: ""; width: 6px; height: 6px; border-radius: 999px; background: currentColor; }
+  .chip.removable { padding-right: 4px; }
+  .chip.removable .x { width: 18px; height: 18px; display: grid; place-items: center; border-radius: 999px; cursor: pointer; color: rgba(35,31,35,0.5); }
+  .chip.removable .x:hover { background: rgba(35,31,35,0.08); color: var(--ink); }
+
+  .chip.feat.orchid { background: var(--orchid); color: var(--ink); }
+  .chip.feat.mint   { background: var(--mint);   color: var(--ink); }
+  .chip.feat.sky    { background: var(--sky);    color: var(--ink); }
+  .chip.feat.sand   { background: var(--sand);   color: var(--ink); }
+  .chip.feat.peach  { background: var(--peach);  color: var(--ink); }
+
+  .chip.filter { background: var(--lift); border: 1px solid var(--hairline-strong); color: var(--ink); }
+  .chip.filter.on { background: var(--ink); color: var(--fg-on-dark-1); border-color: var(--ink); }
+
+  .badge-status { display: inline-flex; align-items: center; gap: 6px; padding: 2px 8px; font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.3px; border-radius: 999px; }
+  .badge-status .d { width: 6px; height: 6px; border-radius: 999px; }
+  .live { background: rgba(74,124,89,0.14); color: var(--success); } .live .d { background: var(--success); }
+  .draft { background: var(--paper-warm); color: var(--fg-2); } .draft .d { background: var(--fg-3); }
+  .review { background: rgba(245,192,68,0.20); color: #8a6b0a; } .review .d { background: #b88a18; }
+  .archive { background: rgba(35,31,35,0.06); color: var(--fg-3); } .archive .d { background: var(--fg-3); }
+</style>
+</head>
+<body>
+
+<div class="card col" style="gap: 16px;">
+  <p class="eyebrow">Avatars · chips · tags · status badges</p>
+
+  <div class="panel">
+    <h5>Avatars · 5 sizes · initial / status</h5>
+    <div class="row" style="gap: 18px; align-items: flex-end;">
+      <span class="av xs av-mesh">D</span>
+      <span class="av sm av-orchid">DC</span>
+      <span class="av md av-mint">DC</span>
+      <span class="av lg av-sky">DC</span>
+      <span class="av xl av-mesh">DC</span>
+      <span class="av md av-mesh with-status">M<span class="dot"></span></span>
+      <span class="av md av-orchid with-status">A<span class="dot away"></span></span>
+      <span class="av md av-ink with-status">K<span class="dot off"></span></span>
+    </div>
+  </div>
+
+  <div class="panel">
+    <h5>Avatar stack · members</h5>
+    <div class="row" style="gap: 28px;">
+      <div class="stack">
+        <span class="av sm av-mesh">D</span>
+        <span class="av sm av-orchid">M</span>
+        <span class="av sm av-mint">A</span>
+        <span class="av sm av-sky">K</span>
+        <span class="more sm">+4</span>
+      </div>
+      <span style="font-size: 13px; color: var(--fg-3);">8 members on this project</span>
+    </div>
+  </div>
+
+  <div class="panel">
+    <h5>Chips · selectable · removable · feature-tinted</h5>
+    <div class="row wrap" style="gap: 8px;">
+      <span class="chip solid">All</span>
+      <span class="chip light">Drafts</span>
+      <span class="chip light">In review</span>
+      <span class="chip light">Live</span>
+      <span class="chip light">Archived</span>
+    </div>
+    <div class="row wrap" style="gap: 8px; margin-top: 10px;">
+      <span class="chip feat orchid">StyleDNA</span>
+      <span class="chip feat mint">Generate</span>
+      <span class="chip feat sky">Connectors</span>
+      <span class="chip feat sand">Insights</span>
+      <span class="chip feat peach">Templates</span>
+    </div>
+    <div class="row wrap" style="gap: 8px; margin-top: 10px;">
+      <span class="chip light removable">Q4 Launch<span class="x">×</span></span>
+      <span class="chip light removable">1080×1350<span class="x">×</span></span>
+      <span class="chip light removable">Updated this week<span class="x">×</span></span>
+      <span class="chip filter on">+ Add filter</span>
+    </div>
+  </div>
+
+  <div class="panel">
+    <h5>Status badges · same vocabulary everywhere</h5>
+    <div class="row wrap" style="gap: 10px;">
+      <span class="badge-status live"><span class="d"></span>Live</span>
+      <span class="badge-status review"><span class="d"></span>In review</span>
+      <span class="badge-status draft"><span class="d"></span>Draft</span>
+      <span class="badge-status archive"><span class="d"></span>Archived</span>
+      <span class="badge-status" style="background: rgba(206,191,250,0.30); color: #5d4aa3;"><span class="d" style="background: #6d5ab9;"></span>Training</span>
+      <span class="badge-status" style="background: rgba(237,90,42,0.10); color: var(--solar);"><span class="d" style="background: var(--solar);"></span>Generating…</span>
+      <span class="badge-status" style="background: rgba(233,69,96,0.10); color: var(--danger);"><span class="d" style="background: var(--danger);"></span>Error</span>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

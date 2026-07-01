@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<!-- @dsCard group="Components" name="Data · Empty states" subtitle="First-time · filtered · success · error · locked · pending" -->
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Empty states</title>
+<link rel="stylesheet" href="_card.css">
+<style>
+  .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+  .empty { background: var(--lift); border: 1px solid var(--hairline); border-radius: 14px; padding: 36px 28px; min-height: 240px; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; gap: 16px; }
+  .empty .art { width: 80px; height: 80px; border-radius: 18px; position: relative; overflow: hidden; }
+  .empty h4 { font-family: var(--font-display); font-size: 18px; font-weight: 500; margin: 0; color: var(--ink); letter-spacing: -0.2px; }
+  .empty p { font-size: 13px; color: var(--fg-2); max-width: 320px; margin: 0; line-height: 1.55; text-wrap: pretty; }
+  .empty .actions { display: flex; gap: 8px; margin-top: 4px; }
+  .btn { padding: 9px 16px; border-radius: 8px; font-family: var(--font-body); font-size: 13px; cursor: pointer; border: 0; }
+  .btn.primary { background: var(--ink); color: var(--fg-on-dark-1); }
+  .btn.ghost { background: transparent; color: var(--ink); border: 1px solid var(--hairline-strong); }
+  /* Geometric illustration "blobs" */
+  .b1 { background: var(--mesh-warm); }
+  .b2 { background: var(--orchid); }
+  .b3 { background: var(--mint); }
+  .b4 { background: var(--sand); }
+  .b5 { background: var(--peach); }
+  .b6 { background: var(--paper-warm); }
+  .art svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+</style>
+</head>
+<body>
+
+<div class="card col" style="gap: 14px;">
+  <p class="eyebrow">Empty states · scoped, with one clear next action</p>
+
+  <div class="grid">
+    <!-- First-time -->
+    <div class="empty">
+      <div class="art b1"><svg viewBox="0 0 80 80"><rect x="20" y="20" width="20" height="40" rx="10" fill="#fff" opacity=".9"/><rect x="40" y="20" width="20" height="20" rx="10" fill="#fff" opacity=".9"/><rect x="40" y="40" width="20" height="20" rx="10" fill="#fff" opacity=".9"/></svg></div>
+      <div>
+        <h4>Train your first brand</h4>
+        <p>Upload a deck, a few assets, or your site — we'll learn your voice in under a minute.</p>
+      </div>
+      <div class="actions">
+        <button class="btn primary">Upload assets</button>
+        <button class="btn ghost">Paste URL</button>
+      </div>
+    </div>
+
+    <!-- Filtered to zero -->
+    <div class="empty">
+      <div class="art b6" style="display: grid; place-items: center;"><svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#999" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg></div>
+      <div>
+        <h4>No matches for "obsidian"</h4>
+        <p>Try a different search, or clear filters to see all 128 generations.</p>
+      </div>
+      <div class="actions"><button class="btn ghost">Clear filters</button></div>
+    </div>
+
+    <!-- Finished -->
+    <div class="empty">
+      <div class="art b3" style="display: grid; place-items: center;"><svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#4a7c59" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></div>
+      <div>
+        <h4>Inbox zero</h4>
+        <p>All drafts have a decision. Two are scheduled for tomorrow morning.</p>
+      </div>
+      <div class="actions"><button class="btn ghost">Schedule</button></div>
+    </div>
+
+    <!-- Error -->
+    <div class="empty">
+      <div class="art b5" style="display: grid; place-items: center;"><svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#e94560" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M15 9 9 15"/><path d="m9 9 6 6"/></svg></div>
+      <div>
+        <h4>Couldn't load your projects</h4>
+        <p>Looks like a hiccup on our side. Refresh, or check <u>status.socialpaint.com</u>.</p>
+      </div>
+      <div class="actions"><button class="btn primary">Refresh</button><button class="btn ghost">Status page</button></div>
+    </div>
+
+    <!-- Permission -->
+    <div class="empty">
+      <div class="art b2" style="display: grid; place-items: center;"><svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="var(--ink)" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/></svg></div>
+      <div>
+        <h4>This is private</h4>
+        <p>Brand Refresh ‘26 is locked to its owners. Ask Dani for access.</p>
+      </div>
+      <div class="actions"><button class="btn primary">Request access</button></div>
+    </div>
+
+    <!-- Coming soon -->
+    <div class="empty">
+      <div class="art b4" style="display: grid; place-items: center;"><svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#8a6b0a" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg></div>
+      <div>
+        <h4>Insights are warming up</h4>
+        <p>We'll show performance once your first 10 generations have published. You're 3 away.</p>
+      </div>
+      <div class="actions"><button class="btn ghost">Generate now</button></div>
+    </div>
+  </div>
+
+  <p class="small" style="color: var(--fg-3); max-width: 660px;"><b style="font-weight: 500; color: var(--ink);">Formula:</b> 1) shape illustration (pastel) 2) declarative title 3) one sentence of context 4) one primary action. Never two primaries. Tone matches <a href="brand-voice.html" style="text-decoration: underline;">brand voice</a>.</p>
+</div>
+
+</body>
+</html>

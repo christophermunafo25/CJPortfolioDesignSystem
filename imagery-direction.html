@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<!-- @dsCard group="Brand" name="Imagery · Direction & photography" subtitle="Moodboard · photo rules · do/don't" -->
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Imagery direction</title>
+<link rel="stylesheet" href="_card.css">
+<style>
+  .panel { background: var(--lift); border: 1px solid var(--hairline); border-radius: 14px; overflow: hidden; }
+  .panel header { padding: 14px 18px; border-bottom: 1px solid var(--hairline); }
+  .panel header h4 { font-family: var(--font-display); font-size: 14px; font-weight: 500; margin: 0; color: var(--ink); }
+  .panel header p { font-size: 12px; color: var(--fg-3); margin-top: 2px; }
+  .panel-body { padding: 18px; }
+
+  .moodboard { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; }
+  .mood { aspect-ratio: 4/5; border-radius: 10px; position: relative; overflow: hidden; }
+  .mood.m1 { background: linear-gradient(150deg, var(--solar), var(--blush)); }
+  .mood.m2 { background: linear-gradient(180deg, var(--amber), var(--blush)); }
+  .mood.m3 { background: var(--obsidian) radial-gradient(60% 50% at 30% 30%, rgba(255,90,114,0.4), transparent); }
+  .mood.m4 { background: linear-gradient(170deg, var(--paper) 30%, var(--peach)); }
+  .mood::after { content: ""; position: absolute; inset: 0; background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%25' height='100%25' filter='url(%23n)' opacity='0.4'/></svg>"); mix-blend-mode: overlay; opacity: 0.5; }
+  .mood-cap { position: absolute; bottom: 8px; left: 10px; font-family: var(--font-mono); font-size: 9px; color: rgba(255,255,255,0.8); letter-spacing: 0.3px; text-transform: uppercase; }
+  .mood.m4 .mood-cap { color: rgba(35,31,35,0.5); }
+
+  .photo-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  .photo-card { background: var(--paper); border: 1px solid var(--hairline); border-radius: 12px; overflow: hidden; }
+  .photo-card .ph { aspect-ratio: 4/3; background: repeating-linear-gradient(135deg, var(--paper-warm) 0 12px, var(--paper) 12px 24px); position: relative; display: grid; place-items: center; }
+  .photo-card .ph span { font-family: var(--font-mono); font-size: 11px; color: var(--fg-3); padding: 4px 10px; background: var(--lift); border-radius: 6px; }
+  .photo-card .meta { padding: 12px 14px; }
+  .photo-card .meta b { font-family: var(--font-display); font-size: 13px; color: var(--ink); font-weight: 500; }
+  .photo-card .meta p { font-size: 12px; color: var(--fg-3); margin: 2px 0 0; line-height: 1.5; }
+
+  .rules { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; padding: 18px; }
+  .rule { font-size: 13px; color: var(--fg-1); line-height: 1.55; }
+  .rule b { font-weight: 500; }
+  .rule.do { padding-left: 18px; position: relative; }
+  .rule.do::before { content: "✓"; position: absolute; left: 0; color: var(--success); font-family: var(--font-mono); font-size: 13px; }
+  .rule.dont { padding-left: 18px; position: relative; color: var(--fg-2); }
+  .rule.dont::before { content: "✗"; position: absolute; left: 0; color: var(--danger); font-family: var(--font-mono); font-size: 13px; }
+</style>
+</head>
+<body>
+
+<div class="card col" style="gap: 14px;">
+  <p class="eyebrow">Imagery · photography direction · moodboard · do/don't</p>
+
+  <div class="panel">
+    <header><h4>The moodboard · warm, optimistic, working</h4><p>Reach for these moods when commissioning, sourcing, or AI-generating.</p></header>
+    <div class="panel-body">
+      <div class="moodboard">
+        <div class="mood m1"><span class="mood-cap">Sun coming through</span></div>
+        <div class="mood m2"><span class="mood-cap">Tactile · papers · in motion</span></div>
+        <div class="mood m3"><span class="mood-cap">Night studio · craft</span></div>
+        <div class="mood m4"><span class="mood-cap">Quiet morning · ready</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="panel">
+    <header><h4>Photography rules</h4></header>
+    <div class="panel-body">
+      <div class="photo-grid">
+        <div class="photo-card">
+          <div class="ph"><span>top-down · team at work</span></div>
+          <div class="meta"><b>Hero · launch / pitch</b><p>Angle from above. Real desks, real artifacts. Always shoot at warm hour, never harsh noon. Lean orange-pink.</p></div>
+        </div>
+        <div class="photo-card">
+          <div class="ph"><span>close-up · craft in progress</span></div>
+          <div class="meta"><b>Storytelling · in-product moments</b><p>Hands, materials, screens. One subject, shallow depth. Stay below body-shot scale; we don't shoot brand-y portraits.</p></div>
+        </div>
+        <div class="photo-card">
+          <div class="ph"><span>environmental · empty office</span></div>
+          <div class="meta"><b>Atmospheric · section breaks</b><p>Spaces without people. Warm afternoon light. Let the mesh peek through windows or fabric.</p></div>
+        </div>
+        <div class="photo-card">
+          <div class="ph"><span>product collage · papers + screen</span></div>
+          <div class="meta"><b>Tactile collage · educational</b><p>Mix printed deliverables with the on-screen version. Lean into the "your team replicated" thesis.</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="panel">
+    <header><h4>Direction · do / don't</h4></header>
+    <div class="rules">
+      <div class="rule do"><b>Real, warm, working.</b> Show in-progress over polished delivery.</div>
+      <div class="rule dont"><b>Stock smiles.</b> No looking-at-camera, no thumbs-up, no hands-on-laptop poses.</div>
+      <div class="rule do"><b>Warm-side palette.</b> Subjects sit in orange, peach, terracotta. Avoid cool blue floods.</div>
+      <div class="rule dont"><b>Neon, holographic, futuristic.</b> Not us. Hand-crafted beats sci-fi every time.</div>
+      <div class="rule do"><b>Diverse, specific, named.</b> Real names, real teams, real outputs. Caption like a magazine.</div>
+      <div class="rule dont"><b>Generic "marketers in a meeting".</b> Specificity is the brand.</div>
+      <div class="rule do"><b>Grain on every photo.</b> Apply the brand grain overlay; ties photo to the mesh.</div>
+      <div class="rule dont"><b>Heavy filters or HDR.</b> Stay natural; the grain is the filter.</div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

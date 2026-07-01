@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<!-- @dsCard group="Components" name="Overlay · Toast & banner" subtitle="Transient toasts (dark) · persistent banners (tinted)" -->
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Toast & banner</title>
+<link rel="stylesheet" href="_card.css">
+<style>
+  .stack { display: flex; flex-direction: column; gap: 10px; align-items: flex-end; }
+  .toast { display: flex; gap: 12px; align-items: flex-start; padding: 14px 16px; background: var(--ink); color: var(--fg-on-dark-1); border-radius: 12px; box-shadow: var(--shadow-e3); min-width: 340px; max-width: 440px; }
+  .toast .ico { width: 18px; height: 18px; flex-shrink: 0; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; fill: none; margin-top: 1px; }
+  .toast .body { flex: 1; }
+  .toast .title { font-family: var(--font-display); font-size: 14px; font-weight: 500; color: #fff; }
+  .toast .desc { font-size: 12px; color: var(--fg-on-dark-2); margin-top: 2px; line-height: 1.5; }
+  .toast .actions { display: flex; gap: 6px; margin-top: 8px; }
+  .toast a { font-family: var(--font-body); font-size: 12px; color: var(--fg-on-dark-1); text-decoration: underline; cursor: pointer; }
+  .toast.success .ico { stroke: #7dd99a; }
+  .toast.error .ico { stroke: #ff8898; }
+  .toast.warn .ico { stroke: #f5c044; }
+  .toast.info .ico { stroke: #a9c8ff; }
+  .toast .x { color: var(--fg-on-dark-3); cursor: pointer; font-size: 16px; }
+
+  .banner { display: flex; gap: 12px; align-items: center; padding: 12px 16px; border-radius: 12px; }
+  .banner .ico { width: 18px; height: 18px; stroke-width: 2; fill: none; stroke-linecap: round; stroke-linejoin: round; flex-shrink: 0; }
+  .banner .body { flex: 1; font-size: 13px; color: var(--ink); }
+  .banner .body b { font-weight: 500; }
+  .banner a { font-size: 13px; color: var(--ink); text-decoration: underline; cursor: pointer; font-weight: 500; }
+  .banner.success { background: rgba(74,124,89,0.12); }
+  .banner.success .ico { stroke: var(--success); }
+  .banner.warn { background: rgba(245,192,68,0.16); }
+  .banner.warn .ico { stroke: #b88a18; }
+  .banner.error { background: rgba(233,69,96,0.10); }
+  .banner.error .ico { stroke: var(--danger); }
+  .banner.info { background: var(--sky); }
+  .banner.info .ico { stroke: #3b6fb4; }
+</style>
+</head>
+<body>
+
+<div class="card col" style="gap: 22px;">
+  <p class="eyebrow">Toasts · transient · dark ink + tinted icon</p>
+
+  <div class="stack">
+    <div class="toast success">
+      <svg class="ico" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg>
+      <div class="body">
+        <div class="title">Brand kit ingested</div>
+        <div class="desc">Apex Civic v3.2 · 142 assets · 8 fonts. Ready for generation.</div>
+        <div class="actions"><a>View kit</a></div>
+      </div>
+      <span class="x">×</span>
+    </div>
+    <div class="toast error">
+      <svg class="ico" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M15 9 9 15"/><path d="m9 9 6 6"/></svg>
+      <div class="body">
+        <div class="title">Couldn't reach Figma</div>
+        <div class="desc">Token refresh failed. Reconnect in <i>Connectors</i>.</div>
+        <div class="actions"><a>Reconnect</a></div>
+      </div>
+      <span class="x">×</span>
+    </div>
+    <div class="toast info">
+      <svg class="ico" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 8v4"/><path d="M12 16h.01"/></svg>
+      <div class="body">
+        <div class="title">9 generations queued</div>
+        <div class="desc">Heavy day — average wait 12s. We'll ping when ready.</div>
+      </div>
+      <span class="x">×</span>
+    </div>
+  </div>
+
+  <hr style="margin: 0;">
+
+  <p class="eyebrow">Banners · persistent · inline tinted</p>
+  <div class="col" style="gap: 10px;">
+    <div class="banner success"><svg class="ico" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg><div class="body"><b>You're now in private beta.</b> Invite teammates from <u>Settings → Members</u>.</div><a>Got it</a></div>
+    <div class="banner warn"><svg class="ico" viewBox="0 0 24 24"><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><path d="M12 9v4"/><path d="M12 17h.01"/></svg><div class="body"><b>3 days left on Pro trial.</b> You've used 47 of 200 generations.</div><a>Upgrade</a></div>
+    <div class="banner error"><svg class="ico" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M15 9 9 15"/><path d="m9 9 6 6"/></svg><div class="body"><b>We can't render dynamic fonts</b> in this preview. Approve the kit to upgrade the renderer.</div><a>Review kit</a></div>
+    <div class="banner info"><svg class="ico" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 8v4"/><path d="M12 16h.01"/></svg><div class="body"><b>Maintenance Tue 06:00–06:30 UTC.</b> Drafts will queue; nothing will be lost.</div><a>Learn more</a></div>
+  </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<!-- @dsCard group="Components" name="Foundations · Focus & a11y" subtitle="Focus rings + a11y baseline rules" -->
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Focus & accessibility</title>
+<link rel="stylesheet" href="_card.css">
+<style>
+  .demo { display: flex; gap: 24px; flex-wrap: wrap; }
+  .box { padding: 24px; border: 1px solid var(--hairline); border-radius: 12px; background: var(--lift); display: flex; flex-direction: column; gap: 14px; min-width: 220px; }
+  .box.dark { background: var(--obsidian); color: var(--fg-on-dark-1); border-color: var(--hairline-dark); }
+  .btn { background: var(--ink); color: var(--fg-on-dark-1); border: none; padding: 10px 18px; border-radius: 8px; font-family: var(--font-body); font-size: 14px; cursor: pointer; outline: none; transition: box-shadow var(--dur-fast) var(--ease-brand); }
+  .btn.focused { box-shadow: var(--focus-ring); }
+  .btn-light { background: var(--lift); color: var(--ink); border: 1px solid var(--hairline-strong); }
+  .btn-light.focused { box-shadow: var(--focus-ring); }
+  .btn-on-dark { background: var(--paper); color: var(--ink); }
+  .btn-on-dark.focused { box-shadow: var(--focus-ring-dark); }
+  .input { width: 100%; padding: 10px 14px; border-radius: 10px; background: var(--lift); border: 1px solid var(--hairline); font-family: var(--font-body); font-size: 14px; outline: none; }
+  .input.focused { border-color: var(--solar); box-shadow: var(--focus-ring); }
+  .lbl { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.6px; text-transform: uppercase; color: var(--fg-3); }
+  .box.dark .lbl { color: var(--fg-on-dark-3); }
+</style>
+</head>
+<body>
+
+<div class="card col" style="gap: 18px;">
+  <p class="eyebrow">Focus rings · 3px solar @ 32%, always visible on :focus-visible</p>
+
+  <div class="demo">
+    <div class="box">
+      <span class="lbl">On light · default</span>
+      <button class="btn">Resting</button>
+      <button class="btn focused">Focused (Tab)</button>
+      <button class="btn-light btn">Light · focused</button>
+    </div>
+    <div class="box dark">
+      <span class="lbl">On dark · use --focus-ring-dark</span>
+      <button class="btn btn-on-dark">Resting</button>
+      <button class="btn btn-on-dark focused">Focused (Tab)</button>
+    </div>
+    <div class="box">
+      <span class="lbl">Field focus</span>
+      <input class="input" value="resting" />
+      <input class="input focused" value="focused" />
+    </div>
+  </div>
+
+  <div style="background: var(--lift); border: 1px solid var(--hairline); border-radius: 12px; padding: 16px 18px; display: grid; grid-template-columns: 1fr 1fr; gap: 6px 18px;">
+    <p class="small" style="margin: 0;"><b style="font-weight: 500;">Hit target</b> · 44×44px minimum, always.</p>
+    <p class="small" style="margin: 0;"><b style="font-weight: 500;">Contrast</b> · 4.5:1 body, 3:1 large text & icons.</p>
+    <p class="small" style="margin: 0;"><b style="font-weight: 500;">Keyboard</b> · everything reachable, in DOM order. Skip-to-content link first.</p>
+    <p class="small" style="margin: 0;"><b style="font-weight: 500;">Reduced motion</b> · honour <code>prefers-reduced-motion</code>: kill non-essential animation.</p>
+    <p class="small" style="margin: 0;"><b style="font-weight: 500;">ARIA</b> · icon-only buttons need aria-label. Live regions for toasts.</p>
+    <p class="small" style="margin: 0;"><b style="font-weight: 500;">Color is never alone</b> · pair with icon, label, or shape.</p>
+  </div>
+</div>
+
+</body>
+</html>

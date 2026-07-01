@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<!-- @dsCard group="Brand" name="Voice · Microcopy patterns" subtitle="Buttons · errors · confirmations · formatting" -->
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Microcopy patterns</title>
+<link rel="stylesheet" href="_card.css">
+<style>
+  .panel { background: var(--lift); border: 1px solid var(--hairline); border-radius: 14px; overflow: hidden; }
+  .panel header { padding: 14px 18px; border-bottom: 1px solid var(--hairline); }
+  .panel header h4 { font-family: var(--font-display); font-size: 14px; font-weight: 500; margin: 0; color: var(--ink); }
+  .panel header p { font-size: 12px; color: var(--fg-3); margin-top: 2px; }
+  .rows { display: flex; flex-direction: column; }
+  .row { display: grid; grid-template-columns: 140px 1fr 1fr; gap: 16px; padding: 12px 18px; border-top: 1px solid var(--hairline); align-items: start; }
+  .row:first-child { border-top: 0; }
+  .row .case { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.6px; text-transform: uppercase; color: var(--fg-3); padding-top: 4px; }
+  .ok, .no { padding: 8px 12px; border-radius: 8px; font-size: 13px; line-height: 1.5; }
+  .ok { background: rgba(74,124,89,0.08); color: var(--ink); border-left: 2px solid var(--success); }
+  .no { background: rgba(233,69,96,0.06); color: var(--fg-2); border-left: 2px solid var(--danger); text-decoration: line-through; text-decoration-color: rgba(233,69,96,0.4); }
+  .ok::before { content: "✓ "; color: var(--success); font-family: var(--font-mono); font-size: 11px; }
+  .no::before { content: "✗ "; color: var(--danger); font-family: var(--font-mono); font-size: 11px; text-decoration: none; display: inline-block; }
+  .principles { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; padding: 14px 18px; }
+  .principle { font-size: 12px; color: var(--fg-2); line-height: 1.55; }
+  .principle b { color: var(--ink); font-weight: 500; }
+</style>
+</head>
+<body>
+
+<div class="card col" style="gap: 16px;">
+  <p class="eyebrow">Microcopy · the rules behind every label, button, error, and confirmation</p>
+
+  <div class="panel">
+    <header><h4>Principles</h4><p>Drop these in your head and most decisions write themselves.</p></header>
+    <div class="principles">
+      <div class="principle"><b>Verb-first, plainspoken.</b> "Generate", not "Submit". "Train voice", not "Save changes".</div>
+      <div class="principle"><b>Specific over polite.</b> "We can't reach Figma" beats "Something went wrong". Name the thing.</div>
+      <div class="principle"><b>Sentence case everywhere.</b> Buttons, labels, headlines. Title Case For Headlines Feels Corporate.</div>
+      <div class="principle"><b>No exclamation marks.</b> Not in product, not in errors, not in success. Confidence ≠ enthusiasm.</div>
+      <div class="principle"><b>Cut filler.</b> "Please", "Sorry", "Just", "Successfully" — almost always removable. Read it out loud.</div>
+      <div class="principle"><b>Match what's on screen.</b> Button label = primary action verb in the title. No surprises.</div>
+    </div>
+  </div>
+
+  <div class="panel">
+    <header><h4>Buttons</h4></header>
+    <div class="rows">
+      <div class="row"><span class="case">Primary CTA</span><span class="ok">Generate · Save · Publish · Invite · Train voice</span><span class="no">Submit · OK · Click here · Continue</span></div>
+      <div class="row"><span class="case">Destructive</span><span class="ok">Delete kit · Remove member · Cancel run</span><span class="no">Confirm · Yes · Proceed</span></div>
+      <div class="row"><span class="case">Cancel pair</span><span class="ok">Cancel (left) · Delete kit (right, destructive)</span><span class="no">No · Yes</span></div>
+      <div class="row"><span class="case">Empty primary</span><span class="ok">Train your first brand · Make a generation</span><span class="no">Get started · Click to begin</span></div>
+    </div>
+  </div>
+
+  <div class="panel">
+    <header><h4>Errors</h4></header>
+    <div class="rows">
+      <div class="row"><span class="case">Field</span><span class="ok">Enter a valid work email.</span><span class="no">This field is required!</span></div>
+      <div class="row"><span class="case">Service down</span><span class="ok">We can't reach Figma. Try again, or reconnect in Settings.</span><span class="no">An error occurred. Please try again.</span></div>
+      <div class="row"><span class="case">Permission</span><span class="ok">Only owners can delete kits. Ask Dani for access.</span><span class="no">You do not have permission to perform this action.</span></div>
+      <div class="row"><span class="case">Quota</span><span class="ok">You've used 200 of 200 generations this month. Upgrade or wait until June 1.</span><span class="no">Limit exceeded.</span></div>
+    </div>
+  </div>
+
+  <div class="panel">
+    <header><h4>Confirmations</h4></header>
+    <div class="rows">
+      <div class="row"><span class="case">Destructive</span><span class="ok"><b>Delete kit?</b> This can't be undone. 24 generations trained on it will lose context.</span><span class="no">Are you sure you want to delete?</span></div>
+      <div class="row"><span class="case">Success toast</span><span class="ok">Brand kit ingested · 142 assets, 8 fonts. Ready for generation.</span><span class="no">Successfully uploaded!</span></div>
+      <div class="row"><span class="case">In-progress</span><span class="ok">Generating 3 of 9 posts… ~ 14 seconds</span><span class="no">Loading…</span></div>
+    </div>
+  </div>
+
+  <div class="panel">
+    <header><h4>Formatting</h4></header>
+    <div class="rows">
+      <div class="row"><span class="case">Dates</span><span class="ok">2h ago · yesterday · Mar 14 · Mar 14, 2026 (when ambiguous)</span><span class="no">3/14/26 · 14/03/26 · 2 hours ago</span></div>
+      <div class="row"><span class="case">Numbers</span><span class="ok">1,240 · 12.5K · 1.2M (≥10K rounds, ≥1M abbreviates)</span><span class="no">1240 · 12500 generations</span></div>
+      <div class="row"><span class="case">Currency</span><span class="ok">$1,240 · $24 / mo · $0 (free, never "FREE")</span><span class="no">1,240 USD · $1,240.00</span></div>
+      <div class="row"><span class="case">Plurals</span><span class="ok">1 generation · 2 generations · 0 results (never "1 result(s)")</span><span class="no">1 generation(s) · No data</span></div>
+      <div class="row"><span class="case">Truncation</span><span class="ok">Apex Civic launch landing page…</span><span class="no">Apex Civic launch landin...</span></div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

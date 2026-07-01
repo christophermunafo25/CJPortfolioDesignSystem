@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<!-- @dsCard group="Components" name="Overlay · Menu & context menu" subtitle="Dropdown · grouped · context · keyboard shortcuts" -->
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Menus</title>
+<link rel="stylesheet" href="_card.css">
+<style>
+  .demo { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 28px; }
+  .menu { background: var(--lift); border: 1px solid var(--hairline); border-radius: 12px; box-shadow: var(--shadow-e3); padding: 6px; min-width: 220px; }
+  .item { display: flex; align-items: center; gap: 10px; padding: 7px 10px; border-radius: 8px; font-size: 13px; color: var(--ink); cursor: pointer; }
+  .item:hover, .item.hl { background: var(--paper-warm); }
+  .item .ico { width: 16px; height: 16px; stroke: var(--fg-2); stroke-width: 1.75; fill: none; stroke-linecap: round; stroke-linejoin: round; flex-shrink: 0; }
+  .item .kbd { margin-left: auto; font-family: var(--font-mono); font-size: 10px; color: var(--fg-3); }
+  .item.danger { color: var(--danger); }
+  .item.danger .ico { stroke: var(--danger); }
+  .group-lbl { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.6px; text-transform: uppercase; color: var(--fg-3); padding: 8px 10px 4px; }
+  .div { height: 1px; background: var(--hairline); margin: 4px 0; }
+  .submenu-arrow { margin-left: auto; color: var(--fg-3); font-size: 10px; }
+
+  .anchor { display: inline-flex; align-items: center; gap: 6px; padding: 7px 10px; background: var(--paper); border: 1px solid var(--hairline); border-radius: 8px; font-size: 13px; color: var(--ink); margin-bottom: 6px; }
+
+  .ctx-canvas { position: relative; height: 220px; background: repeating-linear-gradient(45deg, var(--paper-warm) 0 12px, var(--paper) 12px 24px); border-radius: 12px; overflow: hidden; padding: 16px; }
+  .ctx-anchor { position: absolute; left: 100px; top: 90px; padding: 12px 16px; background: var(--lift); border-radius: 8px; box-shadow: var(--shadow-e1); font-size: 13px; color: var(--ink); }
+  .ctx-menu { position: absolute; left: 240px; top: 90px; }
+</style>
+</head>
+<body>
+
+<div class="card col" style="gap: 18px;">
+  <p class="eyebrow">Dropdown · context · grouped menu</p>
+
+  <div class="demo">
+    <div>
+      <span class="anchor">Account · Dani <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></span>
+      <div class="menu">
+        <div class="group-lbl">Signed in as</div>
+        <div class="item"><span style="width: 24px; height: 24px; background: var(--mesh-warm); border-radius: 999px; display: grid; place-items: center; color: #fff; font-family: var(--font-display); font-size: 11px; font-weight: 500;">D</span>dani@apex.com</div>
+        <div class="div"></div>
+        <div class="item hl"><svg class="ico" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 1 1 16 0"/></svg>Profile<span class="kbd">⌘P</span></div>
+        <div class="item"><svg class="ico" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 1 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 1 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 1 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 1 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>Settings</div>
+        <div class="item"><svg class="ico" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 8v4"/><path d="M12 16h.01"/></svg>Help & shortcuts<span class="kbd">?</span></div>
+        <div class="div"></div>
+        <div class="item">Sign out</div>
+      </div>
+    </div>
+
+    <div>
+      <span class="anchor">Asset actions</span>
+      <div class="menu">
+        <div class="item"><svg class="ico" viewBox="0 0 24 24"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="m18.5 2.5 3 3-10 10H8.5v-3z"/></svg>Rename<span class="kbd">F2</span></div>
+        <div class="item"><svg class="ico" viewBox="0 0 24 24"><rect width="14" height="14" x="8" y="8" rx="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>Duplicate<span class="kbd">⌘D</span></div>
+        <div class="item"><svg class="ico" viewBox="0 0 24 24"><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/><polyline points="16 6 12 2 8 6"/><line x1="12" x2="12" y1="2" y2="15"/></svg>Share<span class="kbd">⌘⇧S</span></div>
+        <div class="item"><svg class="ico" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="m7 10 5 5 5-5"/><path d="M12 15V3"/></svg>Export<span class="submenu-arrow">▸</span></div>
+        <div class="div"></div>
+        <div class="item"><svg class="ico" viewBox="0 0 24 24"><path d="m12 17 5 5V2H7v20l5-5z"/></svg>Pin to board</div>
+        <div class="div"></div>
+        <div class="item danger"><svg class="ico" viewBox="0 0 24 24"><path d="M3 6h18"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6"/><path d="M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>Move to trash<span class="kbd">⌫</span></div>
+      </div>
+    </div>
+
+    <div>
+      <span class="anchor">Voice presets</span>
+      <div class="menu">
+        <div class="group-lbl">Built-in</div>
+        <div class="item">Plainspoken<span style="font-family: var(--font-mono); font-size: 10px; color: var(--fg-3); margin-left: auto;">default</span></div>
+        <div class="item">Warm authority</div>
+        <div class="item">Playful</div>
+        <div class="group-lbl">From your library</div>
+        <div class="item">Apex Civic launch tone</div>
+        <div class="item">Insights newsletter</div>
+        <div class="div"></div>
+        <div class="item"><svg class="ico" viewBox="0 0 24 24"><path d="M5 12h14"/><path d="M12 5v14"/></svg>Train a new voice…</div>
+      </div>
+    </div>
+  </div>
+
+  <hr style="margin: 0;">
+
+  <p class="eyebrow">Context menu · right-click on asset</p>
+  <div class="ctx-canvas">
+    <div class="ctx-anchor">Hero — square — v3</div>
+    <div class="menu ctx-menu">
+      <div class="item"><svg class="ico" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg>Open</div>
+      <div class="item"><svg class="ico" viewBox="0 0 24 24"><path d="M15 4V2"/><path d="M15 16v-2"/><path d="M8 9h2"/><path d="M20 9h2"/><path d="M17.8 11.8 19 13"/><path d="M17.8 6.2 19 5"/><path d="m3 21 9-9"/><path d="M12.2 6.2 11 5"/></svg>Regenerate</div>
+      <div class="div"></div>
+      <div class="item"><svg class="ico" viewBox="0 0 24 24"><rect width="14" height="14" x="8" y="8" rx="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>Duplicate</div>
+      <div class="item danger"><svg class="ico" viewBox="0 0 24 24"><path d="M3 6h18"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6"/><path d="M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>Delete</div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

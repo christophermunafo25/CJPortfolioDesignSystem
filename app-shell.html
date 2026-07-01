@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<!-- @dsCard group="Components" name="App shell · Full screen" subtitle="Sidebar + topbar + dashboard · the default product surface" -->
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>App shell</title>
+<link rel="stylesheet" href="_card.css">
+<style>
+  .shell { display: grid; grid-template-columns: 232px 1fr; height: 600px; background: var(--paper); border: 1px solid var(--hairline); border-radius: 14px; overflow: hidden; }
+
+  /* Sidebar */
+  .side { background: var(--paper); border-right: 1px solid var(--hairline); display: flex; flex-direction: column; }
+  .side-head { padding: 14px 14px 10px; }
+  .ws { display: flex; align-items: center; gap: 8px; padding: 8px 10px; border-radius: 10px; background: var(--lift); border: 1px solid var(--hairline); cursor: pointer; }
+  .ws .av { width: 26px; height: 26px; border-radius: 7px; background: var(--mesh-warm); display: grid; place-items: center; color: #fff; font-family: var(--font-display); font-weight: 500; font-size: 12px; flex-shrink: 0; }
+  .ws .body { flex: 1; min-width: 0; }
+  .ws .name { font-size: 13px; color: var(--ink); font-weight: 400; line-height: 1.2; }
+  .ws .plan { font-family: var(--font-mono); font-size: 9px; color: var(--fg-3); letter-spacing: 0.3px; text-transform: uppercase; }
+  .ws .chev { color: var(--fg-3); flex-shrink: 0; }
+
+  .side-search { padding: 6px 14px 12px; }
+  .side-search .field { position: relative; }
+  .side-search input { width: 100%; padding: 7px 12px 7px 30px; border-radius: 7px; background: rgba(35,31,35,0.04); border: 0; font-family: var(--font-body); font-size: 12px; outline: none; color: var(--ink); }
+  .side-search svg { position: absolute; left: 10px; top: 50%; transform: translateY(-50%); width: 13px; height: 13px; stroke: var(--fg-3); stroke-width: 1.75; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+  .side-search kbd { position: absolute; right: 8px; top: 50%; transform: translateY(-50%); font-family: var(--font-mono); font-size: 9px; color: var(--fg-3); padding: 2px 4px; background: rgba(35,31,35,0.06); border-radius: 3px; }
+
+  .nav { padding: 4px 8px; display: flex; flex-direction: column; gap: 1px; flex: 1; overflow: auto; }
+  .nav-group { padding: 14px 8px 4px; font-family: var(--font-mono); font-size: 9px; color: var(--fg-3); letter-spacing: 0.6px; text-transform: uppercase; display: flex; justify-content: space-between; align-items: center; }
+  .nav-group .plus { font-size: 14px; color: var(--fg-3); cursor: pointer; }
+  .nav a { display: flex; align-items: center; gap: 10px; padding: 7px 10px; border-radius: 7px; font-size: 13px; color: var(--fg-2); cursor: pointer; }
+  .nav a:hover { background: rgba(35,31,35,0.04); color: var(--ink); }
+  .nav a.active { background: rgba(237,90,42,0.10); color: var(--solar); }
+  .nav a.active svg { stroke: var(--solar); }
+  .nav a svg { width: 15px; height: 15px; stroke: var(--fg-2); stroke-width: 1.75; fill: none; stroke-linecap: round; stroke-linejoin: round; flex-shrink: 0; }
+  .nav a .count { margin-left: auto; font-family: var(--font-mono); font-size: 10px; color: var(--fg-3); }
+  .nav a .dot-pill { width: 14px; height: 14px; border-radius: 4px; flex-shrink: 0; }
+
+  .side-foot { padding: 10px 14px 14px; border-top: 1px solid var(--hairline); }
+  .gen-cta { display: flex; align-items: center; gap: 8px; padding: 8px 10px; background: var(--ink); color: var(--fg-on-dark-1); border-radius: 8px; cursor: pointer; font-size: 13px; }
+  .gen-cta svg { stroke: var(--amber); stroke-width: 1.75; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+  .gen-cta kbd { margin-left: auto; font-family: var(--font-mono); font-size: 9px; padding: 1px 4px; background: rgba(255,255,255,0.12); border-radius: 3px; }
+
+  /* Main */
+  .main { display: flex; flex-direction: column; overflow: hidden; }
+
+  /* Topbar */
+  .topbar { display: flex; align-items: center; gap: 12px; padding: 10px 18px; background: var(--lift); border-bottom: 1px solid var(--hairline); height: 52px; flex-shrink: 0; }
+  .crumbs { display: flex; gap: 6px; align-items: center; font-size: 13px; color: var(--fg-3); }
+  .crumbs a { color: var(--fg-2); cursor: pointer; }
+  .crumbs b { color: var(--ink); font-weight: 400; }
+  .crumbs .sep { color: var(--fg-4); }
+  .top-actions { margin-left: auto; display: flex; gap: 6px; align-items: center; }
+  .iconbtn { width: 30px; height: 30px; display: grid; place-items: center; border-radius: 7px; color: var(--fg-2); cursor: pointer; }
+  .iconbtn:hover { background: var(--paper); color: var(--ink); }
+  .iconbtn svg { width: 15px; height: 15px; stroke-width: 1.75; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+  .iconbtn .bell-dot { position: absolute; top: 6px; right: 6px; width: 6px; height: 6px; border-radius: 999px; background: var(--solar); border: 1.5px solid var(--lift); }
+  .iconbtn { position: relative; }
+  .top-actions .av { width: 26px; height: 26px; border-radius: 999px; background: var(--mesh-warm); display: grid; place-items: center; color: #fff; font-family: var(--font-display); font-weight: 500; font-size: 11px; cursor: pointer; }
+
+  /* Content */
+  .content { flex: 1; overflow: auto; padding: 24px 28px; }
+  .page-head { display: flex; align-items: flex-end; gap: 16px; margin-bottom: 22px; }
+  .page-head h1 { font-family: var(--font-display); font-size: 26px; font-weight: 500; letter-spacing: -0.4px; margin: 0; color: var(--ink); }
+  .page-head p { font-size: 13px; color: var(--fg-3); margin: 4px 0 0; }
+  .page-head .right { margin-left: auto; display: flex; gap: 8px; }
+  .btn { padding: 8px 14px; border-radius: 8px; font-family: var(--font-body); font-size: 13px; cursor: pointer; border: 0; }
+  .btn.primary { background: var(--ink); color: var(--fg-on-dark-1); display: inline-flex; gap: 6px; align-items: center; }
+  .btn.primary svg { width: 13px; height: 13px; stroke: #fff; stroke-width: 2; fill: none; }
+  .btn.ghost { background: transparent; color: var(--ink); border: 1px solid var(--hairline-strong); }
+
+  .stat-row { display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap: 12px; margin-bottom: 20px; }
+  .stat { background: var(--lift); border: 1px solid var(--hairline); border-radius: 12px; padding: 14px 16px; }
+  .stat .lbl { font-family: var(--font-mono); font-size: 10px; color: var(--fg-3); letter-spacing: 0.5px; text-transform: uppercase; }
+  .stat .val { font-family: var(--font-display); font-size: 26px; color: var(--ink); font-weight: 500; letter-spacing: -0.5px; margin: 4px 0 2px; }
+  .stat .delta { font-family: var(--font-mono); font-size: 11px; color: var(--success); }
+
+  .grid-2 { display: grid; grid-template-columns: 1.4fr 1fr; gap: 14px; }
+  .card-panel { background: var(--lift); border: 1px solid var(--hairline); border-radius: 12px; overflow: hidden; }
+  .card-panel header { padding: 12px 16px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--hairline); }
+  .card-panel header h4 { font-family: var(--font-display); font-size: 14px; font-weight: 500; margin: 0; color: var(--ink); }
+  .card-panel header a { font-family: var(--font-mono); font-size: 10px; color: var(--solar); cursor: pointer; }
+
+  .gen-list .row { display: flex; gap: 12px; align-items: center; padding: 10px 16px; border-top: 1px solid var(--hairline); cursor: pointer; }
+  .gen-list .row:hover { background: var(--paper); }
+  .gen-list .thumb { width: 40px; height: 30px; border-radius: 5px; }
+  .gen-list .thumb.m { background: var(--mesh-warm); }
+  .gen-list .thumb.p { background: var(--peach); }
+  .gen-list .thumb.o { background: var(--orchid); }
+  .gen-list .body { flex: 1; min-width: 0; }
+  .gen-list .t { font-size: 13px; color: var(--ink); }
+  .gen-list .s { font-family: var(--font-mono); font-size: 10px; color: var(--fg-3); margin-top: 1px; }
+  .gen-list .meta { font-family: var(--font-mono); font-size: 10px; color: var(--fg-3); }
+
+  .activity { padding: 6px 0; }
+  .activity .item { display: flex; gap: 10px; padding: 8px 16px; align-items: flex-start; }
+  .activity .av { width: 22px; height: 22px; border-radius: 999px; flex-shrink: 0; display: grid; place-items: center; color: #fff; font-family: var(--font-display); font-weight: 500; font-size: 10px; }
+  .activity .item .body { font-size: 12px; line-height: 1.5; color: var(--fg-2); }
+  .activity .item .body b { font-weight: 500; color: var(--ink); }
+  .activity .item .when { font-family: var(--font-mono); font-size: 10px; color: var(--fg-3); margin-top: 2px; display: block; }
+</style>
+</head>
+<body>
+
+<div class="card" style="padding: 18px;">
+  <p class="eyebrow" style="margin-bottom: 14px;">App shell · sidebar · topbar · content · all together</p>
+  <div class="shell">
+
+    <!-- SIDEBAR -->
+    <aside class="side">
+      <div class="side-head">
+        <div class="ws">
+          <span class="av">AC</span>
+          <div class="body"><div class="name">Apex Civic</div><div class="plan">Team · Pro</div></div>
+          <svg class="chev" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+        </div>
+      </div>
+      <div class="side-search">
+        <div class="field">
+          <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
+          <input placeholder="Search or jump…" />
+          <kbd>⌘K</kbd>
+        </div>
+      </div>
+      <nav class="nav">
+        <div class="nav-group">Workspace</div>
+        <a class="active"><svg viewBox="0 0 24 24"><rect width="18" height="7" x="3" y="3" rx="1"/><rect width="9" height="7" x="3" y="14" rx="1"/><rect width="5" height="7" x="16" y="14" rx="1"/></svg>Overview</a>
+        <a><svg viewBox="0 0 24 24"><path d="M15 4V2"/><path d="M15 16v-2"/><path d="M8 9h2"/><path d="m3 21 9-9"/></svg>Generate<span class="count">⌘N</span></a>
+        <a><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>Drafts<span class="count">12</span></a>
+        <a><svg viewBox="0 0 24 24"><path d="M3 3v16a2 2 0 0 0 2 2h16"/><path d="M7 16h8"/><path d="M7 11h12"/><path d="M7 6h3"/></svg>Insights</a>
+
+        <div class="nav-group">Brand <span class="plus">+</span></div>
+        <a><span class="dot-pill" style="background: var(--mesh-warm);"></span>Apex Civic v3.2</a>
+        <a><span class="dot-pill" style="background: var(--orchid);"></span>Civic launch tone</a>
+
+        <div class="nav-group">Projects <span class="plus">+</span></div>
+        <a><span class="dot-pill" style="background: var(--peach);"></span>Q4 Launch Campaign<span class="count">128</span></a>
+        <a><span class="dot-pill" style="background: var(--sand);"></span>Always-on Social<span class="count">24</span></a>
+        <a><span class="dot-pill" style="background: var(--mint);"></span>Brand Refresh ‘26</a>
+        <a><span class="dot-pill" style="background: var(--sky);"></span>Civic launch landing</a>
+
+        <div class="nav-group">Library</div>
+        <a><svg viewBox="0 0 24 24"><path d="M3 7V5a2 2 0 0 1 2-2h2"/><path d="M17 3h2a2 2 0 0 1 2 2v2"/><path d="M21 17v2a2 2 0 0 1-2 2h-2"/><path d="M7 21H5a2 2 0 0 1-2-2v-2"/><rect width="7" height="5" x="7" y="7" rx="1"/><rect width="7" height="5" x="10" y="12" rx="1"/></svg>Assets</a>
+        <a><svg viewBox="0 0 24 24"><rect width="8" height="8" x="3" y="3" rx="2"/><path d="M7 11v4a2 2 0 0 0 2 2h4"/><rect width="8" height="8" x="13" y="13" rx="2"/></svg>Templates</a>
+        <a><svg viewBox="0 0 24 24"><path d="M21.44 11.05 12.25 20.24a6 6 0 0 1-8.49-8.49l8.57-8.57A4 4 0 1 1 17.97 8.86l-8.58 8.57a2 2 0 1 1-2.83-2.83l8.49-8.48"/></svg>Connectors</a>
+      </nav>
+      <div class="side-foot">
+        <div class="gen-cta"><svg width="14" height="14" viewBox="0 0 24 24"><path d="M15 4V2"/><path d="M15 16v-2"/><path d="M8 9h2"/><path d="m3 21 9-9"/></svg>New generation<kbd>⌘N</kbd></div>
+      </div>
+    </aside>
+
+    <!-- MAIN -->
+    <main class="main">
+      <header class="topbar">
+        <div class="crumbs">
+          <a>Apex Civic</a>
+          <svg class="sep" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="m9 6 6 6-6 6"/></svg>
+          <b>Overview</b>
+        </div>
+        <div class="top-actions">
+          <button class="iconbtn"><svg viewBox="0 0 24 24"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/></svg><span class="bell-dot"></span></button>
+          <button class="iconbtn"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><path d="M12 17h.01"/></svg></button>
+          <button class="btn ghost" style="padding: 7px 12px; font-size: 12px;">Invite</button>
+          <span class="av">D</span>
+        </div>
+      </header>
+
+      <div class="content">
+        <div class="page-head">
+          <div>
+            <h1>Good afternoon, Dani</h1>
+            <p>3 drafts waiting on you · Painter v4 is live</p>
+          </div>
+          <div class="right">
+            <button class="btn ghost">Import</button>
+            <button class="btn primary"><svg viewBox="0 0 24 24" stroke="currentColor"><path d="M5 12h14"/><path d="M12 5v14"/></svg>New generation</button>
+          </div>
+        </div>
+
+        <div class="stat-row">
+          <div class="stat"><div class="lbl">Generations · 30d</div><div class="val">412</div><div class="delta">+38% vs prev</div></div>
+          <div class="stat"><div class="lbl">Approval rate</div><div class="val">84%</div><div class="delta">+6 pts</div></div>
+          <div class="stat"><div class="lbl">Median wait</div><div class="val">11.2s</div><div class="delta" style="color: var(--fg-3);">on target</div></div>
+          <div class="stat"><div class="lbl">Live posts</div><div class="val">96</div><div class="delta">+12</div></div>
+        </div>
+
+        <div class="grid-2">
+          <div class="card-panel">
+            <header><h4>Recent generations</h4><a>View all →</a></header>
+            <div class="gen-list">
+              <div class="row"><div class="thumb m"></div><div class="body"><div class="t">"Replicate your team" — IG post · v3</div><div class="s">1080×1350 · Apex Civic · 4 variants</div></div><span class="meta">2h ago</span></div>
+              <div class="row"><div class="thumb p"></div><div class="body"><div class="t">Always-on · weekly slot 24</div><div class="s">1080×1080 · feed</div></div><span class="meta">3d</span></div>
+              <div class="row"><div class="thumb o"></div><div class="body"><div class="t">Brand refresh — wordmark lockup</div><div class="s">SVG · refresh-26</div></div><span class="meta">1w</span></div>
+              <div class="row"><div class="thumb m"></div><div class="body"><div class="t">Civic launch landing — hero variant A</div><div class="s">web · 1200 wide</div></div><span class="meta">1w</span></div>
+            </div>
+          </div>
+          <div class="card-panel">
+            <header><h4>Activity</h4><a>·</a></header>
+            <div class="activity">
+              <div class="item"><span class="av" style="background: var(--mesh-warm);">M</span><span class="body"><b>Mira</b> approved 6 drafts in Q4 Launch<span class="when">14m ago</span></span></div>
+              <div class="item"><span class="av" style="background: var(--orchid); color: var(--ink);">A</span><span class="body"><b>Aiden</b> commented on hero v3 — "try mint accent"<span class="when">38m ago</span></span></div>
+              <div class="item"><span class="av" style="background: var(--mint); color: var(--ink);">DC</span><span class="body"><b>Design Connector</b> synced 14 tokens from Figma<span class="when">1h ago</span></span></div>
+              <div class="item"><span class="av" style="background: var(--ink);">P</span><span class="body"><b>Painter</b> finished 9 generations<span class="when">2h ago</span></span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+  </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<!-- @dsCard group="Components" name="App · Page templates" subtitle="List · detail · settings · editor" -->
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Page templates</title>
+<link rel="stylesheet" href="_card.css">
+<style>
+  .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .tile { background: var(--lift); border: 1px solid var(--hairline); border-radius: 14px; overflow: hidden; }
+  .tile header { padding: 12px 16px; border-bottom: 1px solid var(--hairline); display: flex; justify-content: space-between; align-items: center; }
+  .tile h5 { font-family: var(--font-display); font-size: 13px; font-weight: 500; margin: 0; color: var(--ink); }
+  .tile .role { font-family: var(--font-mono); font-size: 10px; color: var(--fg-3); letter-spacing: 0.4px; text-transform: uppercase; }
+  .stage { height: 280px; padding: 14px; background: var(--paper); position: relative; }
+  .block { background: var(--lift); border: 1px solid var(--hairline); border-radius: 8px; }
+  .label { font-family: var(--font-mono); font-size: 9px; color: var(--fg-3); padding: 4px 6px; letter-spacing: 0.4px; text-transform: uppercase; }
+  .gap { gap: 8px; }
+  .gap-12 { gap: 12px; }
+
+  /* List view */
+  .list-stage { display: flex; flex-direction: column; gap: 10px; }
+  .list-stage .pageh { display: flex; justify-content: space-between; align-items: center; }
+  .list-stage .pageh .title { font-family: var(--font-display); font-size: 18px; font-weight: 500; color: var(--ink); }
+  .list-stage .pageh .btn { padding: 5px 10px; background: var(--ink); color: var(--fg-on-dark-1); border-radius: 6px; font-size: 11px; }
+  .list-stage .filters { display: flex; gap: 6px; }
+  .list-stage .pill { padding: 3px 10px; background: var(--lift); border: 1px solid var(--hairline); border-radius: 999px; font-size: 11px; color: var(--fg-2); }
+  .list-stage .pill.on { background: var(--ink); color: var(--fg-on-dark-1); border-color: var(--ink); }
+  .list-stage .grid-c { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; flex: 1; }
+  .list-stage .card-c { background: var(--lift); border: 1px solid var(--hairline); border-radius: 8px; padding: 6px; display: flex; flex-direction: column; gap: 6px; }
+  .list-stage .thumb { aspect-ratio: 4/5; border-radius: 5px; }
+  .list-stage .ln { height: 6px; border-radius: 2px; background: var(--paper-warm); }
+  .list-stage .ln.short { width: 50%; }
+
+  /* Detail view */
+  .detail-stage { display: grid; grid-template-columns: 1.4fr 1fr; gap: 12px; height: 100%; }
+  .detail-stage .left { display: flex; flex-direction: column; gap: 8px; }
+  .detail-stage .left .crumbs { font-family: var(--font-mono); font-size: 10px; color: var(--fg-3); }
+  .detail-stage .left h2 { font-family: var(--font-display); font-size: 16px; font-weight: 500; color: var(--ink); margin: 0; }
+  .detail-stage .left .hero { flex: 1; background: var(--mesh-warm); border-radius: 10px; }
+  .detail-stage .right { display: flex; flex-direction: column; gap: 8px; }
+  .detail-stage .right .row { background: var(--lift); border: 1px solid var(--hairline); border-radius: 8px; padding: 8px 10px; }
+  .detail-stage .right .row .k { font-family: var(--font-mono); font-size: 9px; color: var(--fg-3); letter-spacing: 0.4px; text-transform: uppercase; }
+  .detail-stage .right .row .v { font-size: 12px; color: var(--ink); margin-top: 2px; }
+
+  /* Settings */
+  .settings-stage { display: grid; grid-template-columns: 140px 1fr; gap: 12px; height: 100%; }
+  .settings-stage .menu { display: flex; flex-direction: column; gap: 2px; }
+  .settings-stage .menu a { padding: 6px 10px; border-radius: 6px; font-size: 12px; color: var(--fg-2); }
+  .settings-stage .menu a.on { background: rgba(255,63,0,0.1); color: var(--solar); }
+  .settings-stage .right { background: var(--lift); border: 1px solid var(--hairline); border-radius: 10px; padding: 14px; display: flex; flex-direction: column; gap: 12px; }
+  .settings-stage h4 { font-family: var(--font-display); font-size: 14px; font-weight: 500; margin: 0; color: var(--ink); }
+  .settings-stage .field { display: grid; grid-template-columns: 110px 1fr; gap: 10px; align-items: center; }
+  .settings-stage .field label { font-size: 11px; color: var(--fg-2); }
+  .settings-stage .field .input { height: 26px; background: var(--paper); border: 1px solid var(--hairline); border-radius: 6px; }
+  .settings-stage footer { display: flex; gap: 6px; justify-content: flex-end; margin-top: auto; }
+  .settings-stage footer .btn { padding: 5px 10px; border-radius: 6px; font-size: 11px; }
+  .settings-stage footer .btn.primary { background: var(--ink); color: var(--fg-on-dark-1); }
+
+  /* Editor */
+  .editor-stage { display: grid; grid-template-columns: 36px 1fr 200px; gap: 8px; height: 100%; }
+  .editor-stage .toolbar-l { display: flex; flex-direction: column; gap: 4px; align-items: center; padding-top: 4px; }
+  .editor-stage .toolbar-l .t-btn { width: 28px; height: 28px; background: var(--lift); border: 1px solid var(--hairline); border-radius: 6px; }
+  .editor-stage .toolbar-l .t-btn.on { background: var(--ink); }
+  .editor-stage .canvas { background: var(--lift); border: 1px solid var(--hairline); border-radius: 10px; position: relative; overflow: hidden; display: grid; place-items: center; }
+  .editor-stage .canvas .art { width: 56%; aspect-ratio: 4/5; background: var(--mesh-warm); border-radius: 6px; box-shadow: var(--shadow-e2); }
+  .editor-stage .insp { background: var(--lift); border: 1px solid var(--hairline); border-radius: 10px; padding: 10px; display: flex; flex-direction: column; gap: 8px; }
+  .editor-stage .insp .group { font-family: var(--font-mono); font-size: 9px; color: var(--fg-3); letter-spacing: 0.4px; text-transform: uppercase; }
+  .editor-stage .insp .row { display: flex; gap: 4px; }
+  .editor-stage .insp .sw { width: 16px; height: 16px; border-radius: 4px; }
+</style>
+</head>
+<body>
+
+<div class="card col" style="gap: 14px;">
+  <p class="eyebrow">Page templates · 4 layouts cover ~90% of product screens</p>
+
+  <div class="grid">
+
+    <div class="tile">
+      <header><h5>List view</h5><span class="role">browse → filter → drill in</span></header>
+      <div class="stage list-stage">
+        <div class="pageh"><span class="title">Generations</span><span class="btn">+ New</span></div>
+        <div class="filters"><span class="pill on">All</span><span class="pill">Drafts</span><span class="pill">In review</span><span class="pill">Live</span></div>
+        <div class="grid-c">
+          <div class="card-c"><div class="thumb" style="background: var(--mesh-warm);"></div><div class="ln"></div><div class="ln short"></div></div>
+          <div class="card-c"><div class="thumb" style="background: var(--peach);"></div><div class="ln"></div><div class="ln short"></div></div>
+          <div class="card-c"><div class="thumb" style="background: var(--orchid);"></div><div class="ln"></div><div class="ln short"></div></div>
+          <div class="card-c"><div class="thumb" style="background: var(--mint);"></div><div class="ln"></div><div class="ln short"></div></div>
+          <div class="card-c"><div class="thumb" style="background: var(--ink);"></div><div class="ln"></div><div class="ln short"></div></div>
+          <div class="card-c"><div class="thumb" style="background: var(--sand);"></div><div class="ln"></div><div class="ln short"></div></div>
+          <div class="card-c"><div class="thumb" style="background: var(--sky);"></div><div class="ln"></div><div class="ln short"></div></div>
+          <div class="card-c"><div class="thumb" style="background: var(--paper-warm);"></div><div class="ln"></div><div class="ln short"></div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="tile">
+      <header><h5>Detail view</h5><span class="role">hero + metadata</span></header>
+      <div class="stage detail-stage">
+        <div class="left">
+          <span class="crumbs">Q4 Launch › IG post 03</span>
+          <h2>"Replicate your team"</h2>
+          <div class="hero"></div>
+        </div>
+        <div class="right">
+          <div class="row"><div class="k">Format</div><div class="v">1080 × 1350</div></div>
+          <div class="row"><div class="k">Voice</div><div class="v">Warm · plainspoken</div></div>
+          <div class="row"><div class="k">Kit</div><div class="v">Apex Civic v3.2</div></div>
+          <div class="row"><div class="k">Status</div><div class="v" style="color: var(--success);">● Live</div></div>
+          <div class="row"><div class="k">Owners</div><div class="v">Dani · Mira</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="tile">
+      <header><h5>Settings</h5><span class="role">left rail · form</span></header>
+      <div class="stage settings-stage">
+        <div class="menu">
+          <a class="on">Workspace</a>
+          <a>Brand</a>
+          <a>Voice</a>
+          <a>Members</a>
+          <a>Billing</a>
+          <a>Connectors</a>
+          <a>Audit</a>
+        </div>
+        <div class="right">
+          <h4>Workspace</h4>
+          <div class="field"><label>Name</label><div class="input"></div></div>
+          <div class="field"><label>Default voice</label><div class="input"></div></div>
+          <div class="field"><label>Auto-publish</label><div class="input" style="width: 36px;"></div></div>
+          <div class="field"><label>Region</label><div class="input"></div></div>
+          <footer><button class="btn" style="background: var(--paper); color: var(--ink);">Cancel</button><button class="btn primary">Save</button></footer>
+        </div>
+      </div>
+    </div>
+
+    <div class="tile">
+      <header><h5>Editor / canvas</h5><span class="role">tool rail · canvas · inspector</span></header>
+      <div class="stage editor-stage">
+        <div class="toolbar-l">
+          <div class="t-btn on"></div>
+          <div class="t-btn"></div>
+          <div class="t-btn"></div>
+          <div class="t-btn"></div>
+          <div class="t-btn"></div>
+        </div>
+        <div class="canvas"><div class="art"></div></div>
+        <div class="insp">
+          <span class="group">Layer</span>
+          <div class="block" style="height: 28px;"></div>
+          <span class="group">Palette</span>
+          <div class="row"><span class="sw" style="background: var(--solar);"></span><span class="sw" style="background: var(--amber);"></span><span class="sw" style="background: var(--amber);"></span><span class="sw" style="background: var(--ink);"></span></div>
+          <span class="group">Type</span>
+          <div class="block" style="height: 16px;"></div>
+          <div class="block" style="height: 16px; width: 60%;"></div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <p class="small" style="color: var(--fg-3); max-width: 720px;">List, detail, settings, editor. Every product surface starts from one of these. Don't invent a fifth without good reason — the topbar + sidebar shell carries them all.</p>
+</div>
+
+</body>
+</html>

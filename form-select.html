@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<!-- @dsCard group="Components" name="Form · Select & combobox" subtitle="Single · multi · combobox · grouped" -->
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Select & combobox</title>
+<link rel="stylesheet" href="_card.css">
+<style>
+  .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+  .field { display: flex; flex-direction: column; gap: 6px; position: relative; }
+  .field > label { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.7px; text-transform: uppercase; color: var(--fg-3); }
+  .control { display: flex; align-items: center; gap: 8px; padding: 10px 12px 10px 14px; min-height: 42px; background: var(--lift); border: 1px solid var(--hairline); border-radius: 10px; cursor: pointer; }
+  .control.open { border-color: var(--solar); box-shadow: var(--focus-ring); }
+  .control .val { flex: 1; font-size: 14px; color: var(--ink); }
+  .control .val.placeholder { color: var(--fg-4); }
+  .control svg.chev { width: 14px; height: 14px; stroke: var(--fg-3); stroke-width: 1.75; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+  .menu { background: var(--lift); border: 1px solid var(--hairline); border-radius: 12px; box-shadow: var(--shadow-e3); padding: 6px; overflow: hidden; }
+  .opt { display: flex; align-items: center; gap: 10px; padding: 8px 10px; border-radius: 8px; font-size: 14px; color: var(--ink); cursor: pointer; }
+  .opt:hover, .opt.hl { background: var(--paper-warm); }
+  .opt.selected { background: rgba(255,63,0,0.08); color: var(--solar); }
+  .opt .meta { margin-left: auto; font-family: var(--font-mono); font-size: 10px; color: var(--fg-3); }
+  .opt .chk { width: 14px; height: 14px; stroke: var(--solar); stroke-width: 2.5; fill: none; stroke-linecap: round; stroke-linejoin: round; opacity: 0; }
+  .opt.selected .chk { opacity: 1; }
+  .swatch { width: 16px; height: 16px; border-radius: 4px; flex-shrink: 0; }
+  .chip { display: inline-flex; align-items: center; gap: 6px; padding: 4px 6px 4px 10px; background: rgba(35,31,35,0.06); border-radius: 999px; font-size: 12px; color: var(--ink); }
+  .chip .x { width: 16px; height: 16px; display: grid; place-items: center; border-radius: 999px; cursor: pointer; color: var(--fg-3); }
+  .chip .x:hover { background: rgba(35,31,35,0.1); color: var(--ink); }
+  .group-lbl { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.6px; text-transform: uppercase; color: var(--fg-3); padding: 8px 10px 4px; }
+</style>
+</head>
+<body>
+
+<div class="card col" style="gap: 20px;">
+  <p class="eyebrow">Select · multi-select · combobox</p>
+
+  <div class="grid">
+    <div class="field">
+      <label>Single select · open</label>
+      <div class="control open">
+        <span class="val">Mint · Generate Designs</span>
+        <svg class="chev" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg>
+      </div>
+      <div class="menu" style="margin-top: 6px;">
+        <div class="opt"><span class="swatch" style="background: var(--orchid);"></span>Orchid · StyleDNA<svg class="chk" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></div>
+        <div class="opt selected"><span class="swatch" style="background: var(--mint);"></span>Mint · Generate Designs<svg class="chk" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></div>
+        <div class="opt"><span class="swatch" style="background: var(--sky);"></span>Sky · Connectors<svg class="chk" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></div>
+        <div class="opt"><span class="swatch" style="background: var(--sand);"></span>Sand · Insights<svg class="chk" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></div>
+        <div class="opt"><span class="swatch" style="background: var(--peach);"></span>Peach · Brand Templates<svg class="chk" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></div>
+      </div>
+    </div>
+
+    <div class="field">
+      <label>Multi-select · chips</label>
+      <div class="control" style="flex-wrap: wrap; gap: 6px;">
+        <span class="chip">StyleDNA<span class="x">×</span></span>
+        <span class="chip">Connectors<span class="x">×</span></span>
+        <span class="chip">Insights<span class="x">×</span></span>
+        <input style="flex: 1; min-width: 80px; border: 0; background: transparent; outline: none; font-family: var(--font-body); font-size: 14px;" placeholder="Add tag…" />
+      </div>
+      <span style="font-size: 12px; color: var(--fg-3);">3 selected · Backspace removes the last.</span>
+    </div>
+
+    <div class="field">
+      <label>Combobox · autocomplete with typed query</label>
+      <div class="control open">
+        <span class="val">App<span style="color: var(--fg-3); font-weight: 500;">ex</span> Civic</span>
+        <svg class="chev" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg>
+      </div>
+      <div class="menu" style="margin-top: 6px;">
+        <div class="group-lbl">Recent</div>
+        <div class="opt hl">Apex Civic<span class="meta">workspace</span></div>
+        <div class="opt">Apex Healthcare<span class="meta">workspace</span></div>
+        <div class="group-lbl">Suggested</div>
+        <div class="opt">Apex Auto<span class="meta">create new</span></div>
+      </div>
+    </div>
+
+    <div class="field">
+      <label>Grouped select</label>
+      <div class="menu">
+        <div class="group-lbl">Owned by you</div>
+        <div class="opt selected">Q4 Launch Campaign<svg class="chk" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></div>
+        <div class="opt">Always-on Social<svg class="chk" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></div>
+        <div class="group-lbl">Shared with you</div>
+        <div class="opt">Brand refresh ‘26<svg class="chk" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></div>
+        <div class="opt">Civic launch landing<svg class="chk" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></div>
+      </div>
+    </div>
+  </div>
+
+  <p class="small" style="color: var(--fg-3); max-width: 660px;">Always show selected state clearly. Highlighted row (<code>.hl</code>) reflects keyboard focus, separate from <code>:hover</code>. Closing the menu commits the value; Esc cancels.</p>
+</div>
+
+</body>
+</html>

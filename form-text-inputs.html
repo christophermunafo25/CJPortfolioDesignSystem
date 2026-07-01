@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<!-- @dsCard group="Components" name="Form · Text inputs" subtitle="Text · textarea · search · with all states" -->
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Text inputs</title>
+<link rel="stylesheet" href="_card.css">
+<style>
+  .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px 20px; }
+  .field { display: flex; flex-direction: column; gap: 6px; }
+  .field > label { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.7px; text-transform: uppercase; color: var(--fg-3); display: flex; gap: 6px; align-items: baseline; }
+  .field > label .state { color: var(--solar); }
+  .input { width: 100%; padding: 11px 14px; border-radius: 10px; background: var(--lift); border: 1px solid var(--hairline); color: var(--ink); font-family: var(--font-body); font-size: 14px; font-weight: 300; outline: none; transition: all var(--dur-fast) var(--ease-brand); }
+  .input::placeholder { color: var(--fg-4); }
+  .input:hover { border-color: var(--hairline-strong); }
+  .input.focused { border-color: var(--solar); box-shadow: var(--focus-ring); }
+  .input.filled { background: var(--lift); border-color: var(--hairline-strong); }
+  .input.error { border-color: var(--danger); box-shadow: 0 0 0 3px rgba(233,69,96,0.18); }
+  .input.success { border-color: var(--success); }
+  .input.disabled { background: var(--paper-warm); color: var(--fg-3); cursor: not-allowed; }
+  .input.readonly { background: rgba(35,31,35,0.04); border-color: transparent; }
+  .field-wrap { position: relative; display: flex; align-items: center; }
+  .field-wrap svg { position: absolute; left: 14px; width: 16px; height: 16px; stroke: var(--fg-3); stroke-width: 1.75; fill: none; stroke-linecap: round; stroke-linejoin: round; pointer-events: none; }
+  .field-wrap .input { padding-left: 38px; }
+  .field-wrap .suffix { position: absolute; right: 14px; font-family: var(--font-mono); font-size: 11px; color: var(--fg-3); pointer-events: none; }
+  .help { font-size: 12px; color: var(--fg-3); }
+  .err { font-size: 12px; color: var(--danger); display: flex; gap: 6px; align-items: center; }
+  textarea.input { resize: vertical; min-height: 84px; font-family: var(--font-body); line-height: 1.5; }
+</style>
+</head>
+<body>
+
+<div class="card col" style="gap: 20px;">
+  <p class="eyebrow">Text inputs · 10px radius · all states</p>
+
+  <div class="grid">
+    <div class="field">
+      <label>Resting <span class="state" style="color: var(--fg-3);">default</span></label>
+      <input class="input" placeholder="hello@socialpaint.com" />
+    </div>
+    <div class="field">
+      <label>Hover</label>
+      <input class="input" placeholder="hello@socialpaint.com" style="border-color: var(--hairline-strong);" />
+    </div>
+    <div class="field">
+      <label>Focused</label>
+      <input class="input focused" value="hello@social" />
+    </div>
+    <div class="field">
+      <label>Filled</label>
+      <input class="input filled" value="Apex Civic" />
+    </div>
+    <div class="field">
+      <label>Error</label>
+      <input class="input error" value="not-an-email" />
+      <span class="err"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M15 9 9 15"/><path d="m9 9 6 6"/></svg>Enter a valid work email.</span>
+    </div>
+    <div class="field">
+      <label>Success</label>
+      <input class="input success" value="contact@apex.com" />
+      <span class="help" style="color: var(--success);">Looks good — we'll send the invite here.</span>
+    </div>
+    <div class="field">
+      <label>Disabled</label>
+      <input class="input disabled" value="locked@apex.com" disabled />
+    </div>
+    <div class="field">
+      <label>Read-only</label>
+      <input class="input readonly" value="ws_4f8c1e0a" readonly />
+    </div>
+
+    <div class="field">
+      <label>With leading icon</label>
+      <div class="field-wrap">
+        <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
+        <input class="input" placeholder="Search assets" />
+      </div>
+    </div>
+    <div class="field">
+      <label>With suffix</label>
+      <div class="field-wrap">
+        <input class="input" value="350" style="padding-right: 56px;" />
+        <span class="suffix">words</span>
+      </div>
+    </div>
+
+    <div class="field" style="grid-column: span 2;">
+      <label>Textarea · auto-grow</label>
+      <textarea class="input" placeholder="Tell us what your brand voice is supposed to feel like…"></textarea>
+      <span class="help">Cmd/Ctrl + Enter to submit.</span>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

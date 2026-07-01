@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<!-- @dsCard group="Components" name="AI · Run history & version diff" subtitle="Timeline · side-by-side diff · restore & branch" -->
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Run history</title>
+<link rel="stylesheet" href="_card.css">
+<style>
+  .grid { display: grid; grid-template-columns: 280px 1fr; gap: 16px; align-items: start; }
+  .panel { background: var(--lift); border: 1px solid var(--hairline); border-radius: 14px; padding: 18px; }
+  h5 { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.7px; text-transform: uppercase; color: var(--fg-3); margin: 0 0 14px; }
+
+  /* Timeline */
+  .timeline { position: relative; padding-left: 20px; }
+  .timeline::before { content: ""; position: absolute; left: 4px; top: 4px; bottom: 4px; width: 2px; background: var(--paper-warm); border-radius: 1px; }
+  .tl-item { position: relative; padding: 8px 0 14px; cursor: pointer; }
+  .tl-item::before { content: ""; position: absolute; left: -20px; top: 14px; width: 10px; height: 10px; border-radius: 999px; background: var(--lift); border: 2px solid var(--paper-warm); }
+  .tl-item.active::before { border-color: var(--solar); background: var(--solar); }
+  .tl-item.run::before { background: var(--paper-warm); }
+  .tl-row { display: flex; align-items: baseline; gap: 8px; }
+  .tl-row .v { font-family: var(--font-mono); font-size: 11px; color: var(--ink); font-weight: 500; }
+  .tl-row .when { font-family: var(--font-mono); font-size: 10px; color: var(--fg-3); margin-left: auto; }
+  .tl-summary { font-size: 12px; color: var(--fg-2); margin-top: 3px; line-height: 1.45; }
+  .tl-tag { display: inline-block; padding: 1px 5px; border-radius: 3px; font-family: var(--font-mono); font-size: 9px; letter-spacing: 0.3px; }
+  .tl-tag.add { background: rgba(74,124,89,0.12); color: var(--success); }
+  .tl-tag.upd { background: rgba(245,192,68,0.18); color: #8a6b0a; }
+
+  /* Diff view */
+  .diff { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  .ver { background: var(--paper); border: 1px solid var(--hairline); border-radius: 12px; padding: 14px; }
+  .ver header { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 10px; }
+  .ver h6 { font-family: var(--font-display); font-size: 13px; font-weight: 500; margin: 0; color: var(--ink); }
+  .ver header span { font-family: var(--font-mono); font-size: 10px; color: var(--fg-3); }
+  .ver .thumb { aspect-ratio: 4/5; border-radius: 10px; margin-bottom: 12px; }
+  .ver.v3 .thumb { background: var(--mesh-warm); }
+  .ver.v2 .thumb { background: linear-gradient(180deg, var(--paper) 0%, var(--peach) 100%); }
+  .ver .lines { display: flex; flex-direction: column; gap: 4px; font-size: 12px; }
+  .ln { padding: 4px 8px; border-radius: 4px; }
+  .ln.add { background: rgba(74,124,89,0.10); color: var(--ink); }
+  .ln.del { background: rgba(233,69,96,0.08); color: var(--fg-2); text-decoration: line-through; }
+  .ln.same { color: var(--fg-2); }
+  .ln b { font-weight: 500; color: var(--ink); }
+
+  .controls { display: flex; gap: 6px; align-items: center; margin-top: 14px; }
+  .btn { padding: 7px 12px; border-radius: 8px; font-family: var(--font-body); font-size: 12px; cursor: pointer; border: 0; }
+  .btn.primary { background: var(--ink); color: var(--fg-on-dark-1); }
+  .btn.ghost { background: transparent; color: var(--ink); border: 1px solid var(--hairline-strong); }
+</style>
+</head>
+<body>
+
+<div class="card col" style="gap: 14px;">
+  <p class="eyebrow">Run history · version timeline · side-by-side diff</p>
+
+  <div class="grid">
+    <div class="panel">
+      <h5>Versions</h5>
+      <div class="timeline">
+        <div class="tl-item active">
+          <div class="tl-row"><span class="v">v3</span><span class="tl-tag upd">edit</span><span class="when">2h ago</span></div>
+          <p class="tl-summary">Dani · "make the headline italic on source"</p>
+        </div>
+        <div class="tl-item run">
+          <div class="tl-row"><span class="v">v2</span><span class="tl-tag add">run</span><span class="when">yesterday</span></div>
+          <p class="tl-summary">Painter v4 · regenerate all 4 variants · 8.2s</p>
+        </div>
+        <div class="tl-item">
+          <div class="tl-row"><span class="v">v1.1</span><span class="tl-tag upd">edit</span><span class="when">2d ago</span></div>
+          <p class="tl-summary">Mira · swapped to mesh background</p>
+        </div>
+        <div class="tl-item run">
+          <div class="tl-row"><span class="v">v1</span><span class="tl-tag add">run</span><span class="when">2d ago</span></div>
+          <p class="tl-summary">First generation · 4 variants · Painter v3</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="panel">
+      <div class="row" style="justify-content: space-between; margin-bottom: 12px;">
+        <h5 style="margin: 0;">Compare v2 ↔ v3</h5>
+        <div class="row" style="gap: 6px;">
+          <button class="btn ghost">Side-by-side</button>
+          <button class="btn ghost">Overlay</button>
+        </div>
+      </div>
+
+      <div class="diff">
+        <div class="ver v2">
+          <header><h6>v2 · yesterday</h6><span>Mira · run</span></header>
+          <div class="thumb"></div>
+          <div class="lines">
+            <div class="ln same">Brand guidelines go</div>
+            <div class="ln del"><b>stale.</b> So we built</div>
+            <div class="ln same">something that doesn't.</div>
+          </div>
+        </div>
+        <div class="ver v3">
+          <header><h6 style="color: var(--solar);">v3 · 2h ago — current</h6><span>Dani · edit</span></header>
+          <div class="thumb"></div>
+          <div class="lines">
+            <div class="ln same">Brand guidelines go</div>
+            <div class="ln add"><em style="font-style: italic; font-family: 'Instrument Serif', serif; font-weight: 400;">stale</em> the moment they're written.</div>
+            <div class="ln same">So we built something that doesn't.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="controls">
+        <button class="btn primary">Restore v2</button>
+        <button class="btn ghost">Branch from v2</button>
+        <span style="font-family: var(--font-mono); font-size: 10px; color: var(--fg-3); margin-left: auto;">3 edits · 2 runs</span>
+      </div>
+    </div>
+  </div>
+
+  <p class="small" style="color: var(--fg-3); max-width: 720px;">Every generation has a linear version history. <b style="color: var(--ink); font-weight: 500;">Edits</b> and <b style="color: var(--ink); font-weight: 500;">runs</b> are both first-class. Diff renders both as content (text + image) and metadata (model, voice, palette). Restore reverts; branch forks without losing the current path.</p>
+</div>
+
+</body>
+</html>

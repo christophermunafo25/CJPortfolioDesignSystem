@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<!-- @dsCard group="Components" name="Form · Toggles" subtitle="Checkbox · radio · switch · segmented" -->
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Toggles, checks, radios</title>
+<link rel="stylesheet" href="_card.css">
+<style>
+  .grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 24px; }
+  .group { display: flex; flex-direction: column; gap: 10px; }
+  .group > label { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.7px; text-transform: uppercase; color: var(--fg-3); margin-bottom: 4px; }
+
+  /* Checkbox */
+  .check { display: flex; gap: 10px; align-items: flex-start; cursor: pointer; }
+  .check .box { width: 18px; height: 18px; border-radius: 5px; border: 1.5px solid var(--hairline-strong); background: var(--lift); display: grid; place-items: center; flex-shrink: 0; margin-top: 2px; transition: all var(--dur-fast) var(--ease-brand); }
+  .check .box svg { width: 12px; height: 12px; stroke: #fff; stroke-width: 3; fill: none; stroke-linecap: round; stroke-linejoin: round; opacity: 0; }
+  .check.checked .box { background: var(--ink); border-color: var(--ink); }
+  .check.checked .box svg { opacity: 1; }
+  .check.indet .box { background: var(--ink); border-color: var(--ink); }
+  .check.indet .box::after { content: ""; display: block; width: 8px; height: 2px; background: #fff; border-radius: 2px; position: absolute; }
+  .check.indet .box { position: relative; }
+  .check.disabled { opacity: 0.5; cursor: not-allowed; }
+  .check-label { font-size: 13px; color: var(--ink); }
+  .check-label small { display: block; color: var(--fg-3); font-size: 12px; margin-top: 1px; }
+
+  /* Radio */
+  .radio { display: flex; gap: 10px; align-items: flex-start; cursor: pointer; }
+  .radio .circ { width: 18px; height: 18px; border-radius: 999px; border: 1.5px solid var(--hairline-strong); background: var(--lift); display: grid; place-items: center; flex-shrink: 0; margin-top: 2px; transition: all var(--dur-fast) var(--ease-brand); }
+  .radio .circ::after { content: ""; width: 8px; height: 8px; border-radius: 999px; background: var(--ink); opacity: 0; transition: opacity var(--dur-fast) var(--ease-brand); }
+  .radio.checked .circ { border-color: var(--ink); }
+  .radio.checked .circ::after { opacity: 1; }
+
+  /* Toggle */
+  .toggle-row { display: flex; justify-content: space-between; align-items: center; gap: 16px; padding: 8px 0; }
+  .toggle { width: 36px; height: 22px; background: var(--paper-warm); border-radius: 999px; position: relative; cursor: pointer; transition: background var(--dur-fast) var(--ease-brand); flex-shrink: 0; }
+  .toggle::after { content: ""; position: absolute; top: 3px; left: 3px; width: 16px; height: 16px; background: var(--lift); border-radius: 999px; box-shadow: var(--shadow-e1); transition: transform var(--dur-fast) var(--ease-brand); }
+  .toggle.on { background: var(--ink); }
+  .toggle.on::after { transform: translateX(14px); }
+
+  /* Segmented */
+  .seg { display: inline-flex; background: var(--paper-warm); border-radius: 10px; padding: 3px; }
+  .seg button { background: transparent; border: 0; padding: 7px 14px; border-radius: 7px; font-family: var(--font-body); font-size: 13px; color: var(--fg-2); cursor: pointer; transition: all var(--dur-fast) var(--ease-brand); }
+  .seg button.active { background: var(--lift); color: var(--ink); box-shadow: var(--shadow-e1); }
+</style>
+</head>
+<body>
+
+<div class="card col" style="gap: 22px;">
+  <p class="eyebrow">Toggles · checkbox · radio · switch · segmented</p>
+
+  <div class="grid">
+    <div class="group">
+      <label>Checkbox</label>
+      <div class="check"><div class="box"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></div><span class="check-label">Unchecked</span></div>
+      <div class="check checked"><div class="box"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></div><span class="check-label">Email me a weekly digest<small>Mondays at 9am, your timezone.</small></span></div>
+      <div class="check indet"><div class="box"></div><span class="check-label">Partial selection (3 of 8)</span></div>
+      <div class="check disabled"><div class="box"></div><span class="check-label">Disabled · plan required</span></div>
+    </div>
+
+    <div class="group">
+      <label>Radio</label>
+      <div class="radio checked"><div class="circ"></div><span class="check-label">Match my voice<small>Stay close to the brand training set.</small></span></div>
+      <div class="radio"><div class="circ"></div><span class="check-label">Push the edges<small>Higher latitude, more variety.</small></span></div>
+      <div class="radio"><div class="circ"></div><span class="check-label">Experimental<small>Best for exploration boards.</small></span></div>
+    </div>
+
+    <div class="group">
+      <label>Switch / toggle</label>
+      <div class="toggle-row"><span class="check-label">Auto-publish to drafts<small>One draft per platform, one click to ship.</small></span><div class="toggle on"></div></div>
+      <div class="toggle-row"><span class="check-label">Watermark generations</span><div class="toggle"></div></div>
+      <div class="toggle-row"><span class="check-label">Beta features</span><div class="toggle on"></div></div>
+
+      <label style="margin-top: 14px;">Segmented control</label>
+      <div class="seg"><button class="active">Light</button><button>Auto</button><button>Dark</button></div>
+      <div class="seg"><button>List</button><button class="active">Grid</button><button>Canvas</button></div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

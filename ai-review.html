@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<!-- @dsCard group="Components" name="AI · Review & accept" subtitle="4 variants · pick · model reasoning · keyboard 1-4" -->
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Generation review</title>
+<link rel="stylesheet" href="_card.css">
+<style>
+  .frame { background: var(--lift); border: 1px solid var(--hairline); border-radius: 14px; padding: 22px; }
+  .frame header { display: flex; gap: 12px; align-items: center; margin-bottom: 14px; }
+  .frame header h4 { font-family: var(--font-display); font-size: 16px; font-weight: 500; margin: 0; color: var(--ink); }
+  .frame header .sub { font-family: var(--font-mono); font-size: 11px; color: var(--fg-3); }
+  .frame header .right { margin-left: auto; display: flex; gap: 6px; }
+
+  .variants { display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap: 12px; }
+  .var { position: relative; aspect-ratio: 4/5; border-radius: 12px; overflow: hidden; cursor: pointer; transition: all var(--dur-fast) var(--ease-brand); border: 2px solid transparent; }
+  .var:hover { transform: translateY(-2px); }
+  .var.picked { border-color: var(--solar); box-shadow: 0 0 0 4px rgba(255,63,0,0.18); }
+  .var .num { position: absolute; top: 8px; left: 8px; font-family: var(--font-mono); font-size: 10px; padding: 2px 6px; background: rgba(35,31,35,0.6); color: #fff; border-radius: 4px; letter-spacing: 0.4px; }
+  .var .actions { position: absolute; bottom: 0; left: 0; right: 0; padding: 8px; background: linear-gradient(transparent, rgba(35,31,35,0.6)); display: flex; gap: 4px; justify-content: flex-end; opacity: 0; transition: opacity var(--dur-fast) var(--ease-brand); }
+  .var:hover .actions { opacity: 1; }
+  .var .picked-tag { position: absolute; top: 8px; right: 8px; padding: 2px 6px; background: var(--solar); color: #fff; border-radius: 4px; font-family: var(--font-mono); font-size: 9px; letter-spacing: 0.4px; display: none; }
+  .var.picked .picked-tag { display: block; }
+  .var .ibtn { width: 26px; height: 26px; display: grid; place-items: center; background: rgba(35,31,35,0.65); backdrop-filter: blur(6px); border-radius: 6px; color: #fff; }
+  .var .ibtn svg { width: 13px; height: 13px; stroke: #fff; stroke-width: 1.75; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+
+  .v1 { background: var(--mesh-warm); }
+  .v2 { background: linear-gradient(180deg, var(--paper) 0%, var(--peach) 100%); }
+  .v3 { background: var(--ink); }
+  .v4 { background: linear-gradient(160deg, var(--orchid), var(--peach)); }
+  .v-body { position: absolute; inset: 0; padding: 14px; display: flex; flex-direction: column; justify-content: center; }
+  .v-body h6 { font-family: var(--font-display); font-size: 16px; font-weight: 500; margin: 0; line-height: 1.1; letter-spacing: -0.3px; color: #fff; }
+  .v-body h6.dark { color: var(--ink); }
+  .v-body span { font-family: var(--font-mono); font-size: 9px; letter-spacing: 0.5px; text-transform: uppercase; color: rgba(255,255,255,0.65); margin-bottom: 6px; }
+  .v-body span.dark { color: rgba(35,31,35,0.5); }
+
+  .reasoning { margin-top: 18px; padding: 14px 16px; background: var(--paper); border-radius: 12px; display: flex; gap: 12px; }
+  .reasoning .glyph { width: 26px; height: 26px; border-radius: 8px; background: var(--ink); display: grid; place-items: center; flex-shrink: 0; }
+  .reasoning .glyph svg { width: 14px; height: 14px; stroke: var(--amber); stroke-width: 1.75; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+  .reasoning .body { font-size: 13px; color: var(--fg-1); line-height: 1.55; }
+  .reasoning .body b { font-weight: 500; }
+
+  .controls { margin-top: 16px; display: flex; gap: 10px; align-items: center; }
+  .btn { padding: 9px 16px; border-radius: 8px; font-family: var(--font-body); font-size: 13px; cursor: pointer; border: 0; display: inline-flex; align-items: center; gap: 6px; }
+  .btn.primary { background: var(--ink); color: var(--fg-on-dark-1); }
+  .btn.ghost { background: transparent; color: var(--ink); border: 1px solid var(--hairline-strong); }
+  .btn.danger { background: transparent; color: var(--danger); border: 1px solid rgba(233,69,96,0.3); }
+</style>
+</head>
+<body>
+
+<div class="card col" style="gap: 14px;">
+  <p class="eyebrow">Review & accept · 4 variants · one chosen · keyboard 1-4 toggles</p>
+
+  <div class="frame">
+    <header>
+      <h4>"Replicate your team" — IG post</h4>
+      <span class="sub">1080 × 1350 · v3</span>
+      <div class="right">
+        <button class="btn ghost" style="padding: 7px 12px;">Compare side-by-side</button>
+      </div>
+    </header>
+
+    <div class="variants">
+      <div class="var picked">
+        <span class="num">1</span>
+        <span class="picked-tag">picked</span>
+        <div class="v1 v-body">
+          <span>announce</span>
+          <h6>Replicate your team, <em style="font-family: 'Instrument Serif', serif; font-style: italic; font-weight: 400;">straight from the source.</em></h6>
+        </div>
+        <div class="actions"><span class="ibtn"><svg viewBox="0 0 24 24"><path d="M15 4V2"/><path d="M15 16v-2"/><path d="M8 9h2"/><path d="M20 9h2"/><path d="m3 21 9-9"/></svg></span><span class="ibtn"><svg viewBox="0 0 24 24"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="m18.5 2.5 3 3-10 10H8.5v-3z"/></svg></span></div>
+      </div>
+      <div class="var">
+        <span class="num">2</span>
+        <div class="v2 v-body">
+          <span class="dark">announce</span>
+          <h6 class="dark">Brand guidelines go <em style="font-family: 'Instrument Serif', serif; font-style: italic; font-weight: 400;">stale</em>. So we built something that doesn't.</h6>
+        </div>
+      </div>
+      <div class="var">
+        <span class="num">3</span>
+        <div class="v3 v-body">
+          <span>announce</span>
+          <h6>One brand layer. Five surfaces. Replicate your team.</h6>
+        </div>
+      </div>
+      <div class="var">
+        <span class="num">4</span>
+        <div class="v4 v-body">
+          <span class="dark">announce</span>
+          <h6 class="dark">Designs that already know your brand.</h6>
+        </div>
+      </div>
+    </div>
+
+    <div class="reasoning">
+      <div class="glyph"><svg viewBox="0 0 24 24"><path d="M15 4V2"/><path d="M15 16v-2"/><path d="M8 9h2"/><path d="m3 21 9-9"/></svg></div>
+      <div class="body"><b>Why this one:</b> Mesh hero plus the italic source-callout lands closest to Apex Civic's last 14 published posts. Variant 2 reads launchy but breaks your "never lead with friction" rule. <a style="color: var(--solar); text-decoration: underline; cursor: pointer;">See sources →</a></div>
+    </div>
+
+    <div class="controls">
+      <button class="btn primary">Accept picked → drafts<kbd style="font-family: var(--font-mono); font-size: 10px; padding: 1px 4px; background: rgba(255,255,255,0.15); border-radius: 3px;">↵</kbd></button>
+      <button class="btn ghost">Edit picked</button>
+      <button class="btn ghost">Regenerate all<kbd style="font-family: var(--font-mono); font-size: 10px; padding: 1px 4px; background: var(--paper-warm); border-radius: 3px;">⌘R</kbd></button>
+      <button class="btn danger" style="margin-left: auto;">Reject all</button>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<!-- @dsCard group="Components" name="AI · Prompt input" subtitle="Grounding chips · attachments · slash · model picker" -->
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>AI prompt input</title>
+<link rel="stylesheet" href="_card.css">
+<style>
+  .prompt { background: var(--lift); border: 1px solid var(--hairline-strong); border-radius: 16px; box-shadow: var(--shadow-e2); overflow: hidden; transition: all var(--dur-fast) var(--ease-brand); }
+  .prompt.focused { border-color: var(--solar); box-shadow: var(--focus-ring), var(--shadow-e2); }
+  .prompt .chips { padding: 12px 14px 0; display: flex; gap: 6px; flex-wrap: wrap; }
+  .pchip { display: inline-flex; align-items: center; gap: 6px; padding: 4px 8px 4px 10px; background: var(--paper-warm); border-radius: 999px; font-size: 12px; color: var(--ink); }
+  .pchip .x { width: 16px; height: 16px; display: grid; place-items: center; border-radius: 999px; cursor: pointer; color: var(--fg-3); }
+  .pchip.brand { background: rgba(255,63,0,0.10); color: var(--solar); }
+  .pchip.kit { background: rgba(206,191,250,0.30); color: #5d4aa3; }
+
+  .prompt textarea { width: 100%; min-height: 80px; padding: 14px 16px 8px; border: 0; outline: 0; resize: none; background: transparent; font-family: var(--font-body); font-size: 16px; line-height: 1.55; color: var(--ink); font-weight: 300; }
+  .prompt textarea::placeholder { color: var(--fg-4); }
+
+  .toolbar { padding: 8px 12px 12px; display: flex; align-items: center; gap: 6px; border-top: 1px solid var(--hairline); }
+  .tb-btn { display: inline-flex; align-items: center; gap: 6px; padding: 6px 10px; border-radius: 8px; background: transparent; border: 0; color: var(--fg-2); font-family: var(--font-body); font-size: 12px; cursor: pointer; }
+  .tb-btn:hover { background: var(--paper-warm); color: var(--ink); }
+  .tb-btn svg { width: 14px; height: 14px; stroke: currentColor; stroke-width: 1.75; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+  .model { margin-left: auto; display: inline-flex; gap: 6px; align-items: center; padding: 6px 10px; border-radius: 8px; background: var(--paper); border: 1px solid var(--hairline); font-size: 12px; color: var(--ink); }
+  .model .dot { width: 6px; height: 6px; border-radius: 999px; background: var(--mint); }
+  .submit { padding: 7px 14px 7px 12px; border-radius: 8px; background: var(--ink); color: var(--fg-on-dark-1); border: 0; font-family: var(--font-body); font-size: 13px; cursor: pointer; display: inline-flex; align-items: center; gap: 6px; }
+  .submit svg { width: 14px; height: 14px; stroke: #fff; stroke-width: 2; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+
+  /* Slash command popover */
+  .slash { position: relative; }
+  .slash-menu { position: absolute; top: 56px; left: 16px; background: var(--lift); border: 1px solid var(--hairline); border-radius: 12px; box-shadow: var(--shadow-e3); padding: 6px; width: 320px; z-index: 2; }
+  .slash-menu .group-lbl { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.6px; text-transform: uppercase; color: var(--fg-3); padding: 8px 10px 4px; }
+  .slash-row { display: flex; align-items: center; gap: 10px; padding: 8px 10px; border-radius: 8px; font-size: 13px; color: var(--ink); cursor: pointer; }
+  .slash-row.hl { background: var(--paper-warm); }
+  .slash-row svg { width: 16px; height: 16px; stroke: var(--fg-2); stroke-width: 1.75; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+  .slash-row .sub { font-size: 11px; color: var(--fg-3); display: block; margin-top: 1px; }
+
+  .helpers { display: flex; gap: 6px; padding: 10px 16px 0; }
+  .suggestion { padding: 6px 10px; background: var(--paper); border: 1px solid var(--hairline); border-radius: 999px; font-size: 12px; color: var(--fg-2); cursor: pointer; }
+  .suggestion:hover { color: var(--ink); border-color: var(--hairline-strong); }
+</style>
+</head>
+<body>
+
+<div class="card col" style="gap: 16px;">
+  <p class="eyebrow">Prompt input · the heart of generation</p>
+
+  <div class="prompt focused slash">
+    <div class="chips">
+      <span class="pchip brand">⌘ Apex Civic v3.2 <span class="x">×</span></span>
+      <span class="pchip kit">Warm · plainspoken</span>
+      <span class="pchip">/launch-deck.pdf<span class="x">×</span></span>
+      <span class="pchip">+ 2 references</span>
+    </div>
+    <textarea placeholder="Describe what you want to make…">Three Instagram posts announcing the Apex Civic launch. Keep it warm, plainspoken, and lean on the source.</textarea>
+    <div class="helpers">
+      <span class="suggestion">+ Match a post</span>
+      <span class="suggestion">+ Pick a layout</span>
+      <span class="suggestion">+ Set a moodboard</span>
+    </div>
+    <div class="toolbar">
+      <button class="tb-btn" title="Attach"><svg viewBox="0 0 24 24"><path d="M21.44 11.05 12.25 20.24a6 6 0 0 1-8.49-8.49l8.57-8.57A4 4 0 1 1 17.97 8.86l-8.58 8.57a2 2 0 1 1-2.83-2.83l8.49-8.48"/></svg>Attach</button>
+      <button class="tb-btn" title="Brand kit"><svg viewBox="0 0 24 24"><path d="M3 7V5a2 2 0 0 1 2-2h2"/><path d="M17 3h2a2 2 0 0 1 2 2v2"/><path d="M21 17v2a2 2 0 0 1-2 2h-2"/><path d="M7 21H5a2 2 0 0 1-2-2v-2"/><rect width="7" height="5" x="7" y="7" rx="1"/><rect width="7" height="5" x="10" y="12" rx="1"/></svg>Brand</button>
+      <button class="tb-btn"><svg viewBox="0 0 24 24"><rect width="18" height="11" x="3" y="11" rx="2"/><circle cx="12" cy="5" r="2"/><path d="M12 7v4"/><path d="M8 16h.01"/><path d="M16 16h.01"/></svg>Slash</button>
+      <span class="model"><span class="dot"></span>Painter v4 · creative</span>
+      <button class="submit">Generate <svg viewBox="0 0 24 24"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg> <kbd style="font-family: var(--font-mono); font-size: 10px; padding: 1px 4px; background: rgba(255,255,255,0.15); border-radius: 3px; margin-left: 2px;">⌘↵</kbd></button>
+    </div>
+
+    <div class="slash-menu">
+      <div class="group-lbl">Insert / replace</div>
+      <div class="slash-row hl"><svg viewBox="0 0 24 24"><rect width="18" height="18" x="3" y="3" rx="2" ry="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"/></svg><span><b style="font-weight: 500;">/image</b> — attach a reference<span class="sub">match composition or palette</span></span></div>
+      <div class="slash-row"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg><span><b style="font-weight: 500;">/doc</b> — pull text from a file<span class="sub">PDF, DOCX, MD up to 10MB</span></span></div>
+      <div class="slash-row"><svg viewBox="0 0 24 24"><path d="M15 4V2"/><path d="M15 16v-2"/><path d="M8 9h2"/><path d="M20 9h2"/><path d="M17.8 11.8 19 13"/><path d="M17.8 6.2 19 5"/><path d="m3 21 9-9"/><path d="M12.2 6.2 11 5"/></svg><span><b style="font-weight: 500;">/voice</b> — switch voice preset<span class="sub">temporary, this generation only</span></span></div>
+      <div class="slash-row"><svg viewBox="0 0 24 24"><rect width="18" height="7" x="3" y="3" rx="1"/><rect width="9" height="7" x="3" y="14" rx="1"/></svg><span><b style="font-weight: 500;">/format</b> — pick an output size<span class="sub">9:16 · 1:1 · 4:5 · 16:9 · custom</span></span></div>
+    </div>
+  </div>
+
+  <p class="small" style="color: var(--fg-3); max-width: 720px;">Always show what the model is grounded on — brand chip, voice chip, attached refs — above the input. <code>/</code> opens insert menu. <code>@</code> opens people/projects. Cmd+Enter submits. Empty state seeds 2–4 starter prompts.</p>
+</div>
+
+</body>
+</html>

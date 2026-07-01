@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<!-- @dsCard group="Spacing" name="Foundations · Density" subtitle="Compact · cozy · comfortable row tokens" -->
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Density</title>
+<link rel="stylesheet" href="_card.css">
+<style>
+  .cluster { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; }
+  .col-d { background: var(--lift); border: 1px solid var(--hairline); border-radius: 12px; overflow: hidden; }
+  .col-d header { padding: 12px 14px; border-bottom: 1px solid var(--hairline); display: flex; justify-content: space-between; align-items: baseline; }
+  .col-d header h4 { font-family: var(--font-display); font-size: 14px; font-weight: 500; color: var(--ink); margin: 0; }
+  .col-d header span { font-family: var(--font-mono); font-size: 10px; color: var(--fg-3); letter-spacing: 0.4px; }
+  .row-d { display: flex; align-items: center; gap: 10px; border-top: 1px solid var(--hairline); }
+  .row-d:first-of-type { border-top: 0; }
+  .row-d .dot { width: 8px; height: 8px; border-radius: 999px; background: var(--solar); flex-shrink: 0; }
+  .row-d .lbl { flex: 1; font-size: 13px; color: var(--ink); }
+  .row-d .meta { font-family: var(--font-mono); font-size: 10px; color: var(--fg-3); }
+  .compact .row-d { height: var(--row-h-compact); padding: 0 var(--row-px-compact); }
+  .cozy .row-d    { height: var(--row-h-cozy);    padding: 0 var(--row-px-cozy); }
+  .comfy .row-d   { height: var(--row-h-comfy);   padding: 0 var(--row-px-comfy); }
+</style>
+</head>
+<body>
+
+<div class="card col" style="gap: 16px;">
+  <p class="eyebrow">Density · compact / cozy / comfortable, same data</p>
+
+  <div class="cluster">
+    <div class="col-d compact">
+      <header><h4>Compact</h4><span>32 · 10px</span></header>
+      <div class="row-d"><span class="dot"></span><span class="lbl">Apex Civic</span><span class="meta">v4.2</span></div>
+      <div class="row-d"><span class="dot"></span><span class="lbl">Content Studio</span><span class="meta">v4.2</span></div>
+      <div class="row-d"><span class="dot"></span><span class="lbl">Brand Board</span><span class="meta">v3.9</span></div>
+      <div class="row-d"><span class="dot"></span><span class="lbl">Insights</span><span class="meta">v2.1</span></div>
+      <div class="row-d"><span class="dot"></span><span class="lbl">Smart Templates</span><span class="meta">v1.0</span></div>
+      <div class="row-d"><span class="dot"></span><span class="lbl">Connector Lab</span><span class="meta">v1.0</span></div>
+    </div>
+    <div class="col-d cozy">
+      <header><h4>Cozy <span style="font-family: var(--font-mono); font-size: 10px; color: var(--solar);">default</span></h4><span>40 · 14px</span></header>
+      <div class="row-d"><span class="dot"></span><span class="lbl">Apex Civic</span><span class="meta">v4.2</span></div>
+      <div class="row-d"><span class="dot"></span><span class="lbl">Content Studio</span><span class="meta">v4.2</span></div>
+      <div class="row-d"><span class="dot"></span><span class="lbl">Brand Board</span><span class="meta">v3.9</span></div>
+      <div class="row-d"><span class="dot"></span><span class="lbl">Insights</span><span class="meta">v2.1</span></div>
+      <div class="row-d"><span class="dot"></span><span class="lbl">Smart Templates</span><span class="meta">v1.0</span></div>
+      <div class="row-d"><span class="dot"></span><span class="lbl">Connector Lab</span><span class="meta">v1.0</span></div>
+    </div>
+    <div class="col-d comfy">
+      <header><h4>Comfortable</h4><span>52 · 18px</span></header>
+      <div class="row-d"><span class="dot"></span><span class="lbl">Apex Civic</span><span class="meta">v4.2</span></div>
+      <div class="row-d"><span class="dot"></span><span class="lbl">Content Studio</span><span class="meta">v4.2</span></div>
+      <div class="row-d"><span class="dot"></span><span class="lbl">Brand Board</span><span class="meta">v3.9</span></div>
+      <div class="row-d"><span class="dot"></span><span class="lbl">Insights</span><span class="meta">v2.1</span></div>
+      <div class="row-d"><span class="dot"></span><span class="lbl">Smart Templates</span><span class="meta">v1.0</span></div>
+    </div>
+  </div>
+
+  <p class="small" style="color: var(--fg-3); max-width: 660px;">Tables and lists swap density via a parent class. Marketing surfaces and onboarding stay comfortable; the editor and data-heavy views default to cozy; admin/audit tables can use compact. Never mix densities inside a single screen.</p>
+</div>
+
+</body>
+</html>

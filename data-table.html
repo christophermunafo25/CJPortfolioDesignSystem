@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<!-- @dsCard group="Components" name="Data · Table" subtitle="Sortable, selectable rows · pagination · status badges" -->
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Table</title>
+<link rel="stylesheet" href="_card.css">
+<style>
+  .tblwrap { background: var(--lift); border: 1px solid var(--hairline); border-radius: 12px; overflow: hidden; }
+  .tblwrap header { padding: 14px 16px; display: flex; align-items: center; gap: 12px; border-bottom: 1px solid var(--hairline); }
+  .tblwrap h4 { font-family: var(--font-display); font-size: 15px; font-weight: 500; margin: 0; color: var(--ink); }
+  .tblwrap .count { font-family: var(--font-mono); font-size: 11px; color: var(--fg-3); }
+  .tblwrap .actions { margin-left: auto; display: flex; gap: 6px; }
+  .iconbtn { width: 30px; height: 30px; display: grid; place-items: center; border-radius: 6px; border: 1px solid var(--hairline); background: var(--lift); color: var(--fg-2); cursor: pointer; }
+  .iconbtn:hover { background: var(--paper-warm); }
+  .iconbtn svg { width: 14px; height: 14px; stroke-width: 1.75; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+
+  table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  th, td { padding: 10px 14px; text-align: left; }
+  thead { background: var(--paper); }
+  thead th { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.7px; text-transform: uppercase; color: var(--fg-3); font-weight: 400; border-bottom: 1px solid var(--hairline); }
+  thead th.sortable { cursor: pointer; }
+  thead th.sortable.sorted { color: var(--ink); }
+  thead th .arrow { margin-left: 4px; color: var(--solar); }
+  tbody tr { border-bottom: 1px solid var(--hairline); }
+  tbody tr:last-child { border-bottom: 0; }
+  tbody tr:hover { background: var(--paper); }
+  tbody tr.selected { background: rgba(237,90,42,0.06); }
+  td .name { font-weight: 400; color: var(--ink); }
+  td .sub { font-family: var(--font-mono); font-size: 10px; color: var(--fg-3); margin-top: 1px; }
+  .chk { width: 14px; height: 14px; border: 1.5px solid var(--hairline-strong); border-radius: 4px; display: inline-grid; place-items: center; background: var(--lift); }
+  .chk.on { background: var(--ink); border-color: var(--ink); }
+  .chk.on::after { content: ""; width: 6px; height: 3px; border-left: 1.5px solid #fff; border-bottom: 1.5px solid #fff; transform: rotate(-45deg) translate(1px,-1px); display: block; }
+  .badge { display: inline-flex; align-items: center; gap: 6px; padding: 2px 8px; font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.3px; border-radius: 999px; }
+  .badge .dot { width: 6px; height: 6px; border-radius: 999px; }
+  .badge.live { background: rgba(74,124,89,0.14); color: var(--success); }
+  .badge.live .dot { background: var(--success); }
+  .badge.draft { background: var(--paper-warm); color: var(--fg-2); }
+  .badge.draft .dot { background: var(--fg-3); }
+  .badge.review { background: rgba(245,192,68,0.20); color: #8a6b0a; }
+  .badge.review .dot { background: #b88a18; }
+  .avg { display: flex; align-items: center; gap: -8px; }
+  .av { width: 22px; height: 22px; border-radius: 999px; border: 2px solid var(--lift); margin-right: -8px; display: grid; place-items: center; font-family: var(--font-display); font-size: 10px; font-weight: 500; color: #fff; }
+  tfoot td { padding: 10px 14px; background: var(--paper); font-family: var(--font-mono); font-size: 11px; color: var(--fg-3); border-top: 1px solid var(--hairline); }
+  .pages { display: flex; gap: 4px; margin-left: auto; }
+  .pgbtn { padding: 4px 8px; border-radius: 6px; border: 1px solid var(--hairline); background: var(--lift); font-family: var(--font-mono); font-size: 11px; color: var(--fg-2); cursor: pointer; }
+  .pgbtn.active { background: var(--ink); color: var(--fg-on-dark-1); border-color: var(--ink); }
+</style>
+</head>
+<body>
+
+<div class="card col" style="gap: 14px;">
+  <p class="eyebrow">Table · sortable · selectable · density: cozy</p>
+
+  <div class="tblwrap">
+    <header>
+      <h4>Generations</h4>
+      <span class="count">128 total · 3 selected</span>
+      <div class="actions">
+        <button class="iconbtn"><svg viewBox="0 0 24 24"><path d="M3 6h18"/><path d="M6 12h12"/><path d="M10 18h4"/></svg></button>
+        <button class="iconbtn"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg></button>
+        <button class="iconbtn"><svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="m7 10 5 5 5-5"/><path d="M12 15V3"/></svg></button>
+      </div>
+    </header>
+    <table>
+      <thead>
+        <tr>
+          <th style="width: 36px;"><div class="chk on"></div></th>
+          <th class="sortable sorted">Title <span class="arrow">↑</span></th>
+          <th class="sortable">Status</th>
+          <th class="sortable">Format</th>
+          <th class="sortable">Owners</th>
+          <th class="sortable">Updated</th>
+          <th style="width: 32px;"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="selected"><td><div class="chk on"></div></td><td><div class="name">Q4 Launch — IG post 01</div><div class="sub">apex-civic / q4-launch</div></td><td><span class="badge live"><span class="dot"></span>Live</span></td><td>1080 × 1350</td><td><div class="avg"><span class="av" style="background:#d8527a;">D</span><span class="av" style="background:#f17a3b;">M</span></div></td><td>2h ago</td><td>···</td></tr>
+        <tr class="selected"><td><div class="chk on"></div></td><td><div class="name">Q4 Launch — IG post 02</div><div class="sub">apex-civic / q4-launch</div></td><td><span class="badge review"><span class="dot"></span>In review</span></td><td>1080 × 1350</td><td><div class="avg"><span class="av" style="background:#d8527a;">D</span></div></td><td>2h ago</td><td>···</td></tr>
+        <tr class="selected"><td><div class="chk on"></div></td><td><div class="name">Q4 Launch — hero variant A</div><div class="sub">apex-civic / q4-launch</div></td><td><span class="badge live"><span class="dot"></span>Live</span></td><td>1920 × 1080</td><td><div class="avg"><span class="av" style="background:#f17a3b;">M</span><span class="av" style="background:#CDBCFF; color: var(--ink);">A</span></div></td><td>yesterday</td><td>···</td></tr>
+        <tr><td><div class="chk"></div></td><td><div class="name">Always-on · weekly slot 24</div><div class="sub">apex-civic / always-on</div></td><td><span class="badge draft"><span class="dot"></span>Draft</span></td><td>1080 × 1080</td><td><div class="avg"><span class="av" style="background:#f17a3b;">M</span></div></td><td>3d ago</td><td>···</td></tr>
+        <tr><td><div class="chk"></div></td><td><div class="name">Civic launch landing — block 04</div><div class="sub">apex-civic / launch-site</div></td><td><span class="badge draft"><span class="dot"></span>Draft</span></td><td>web · 1200 wide</td><td><div class="avg"><span class="av" style="background:#CDBCFF; color: var(--ink);">A</span></div></td><td>4d ago</td><td>···</td></tr>
+        <tr><td><div class="chk"></div></td><td><div class="name">Brand refresh ‘26 — wordmark lockup</div><div class="sub">apex-civic / brand-refresh</div></td><td><span class="badge review"><span class="dot"></span>In review</span></td><td>SVG export</td><td><div class="avg"><span class="av" style="background:#d8527a;">D</span></div></td><td>last week</td><td>···</td></tr>
+      </tbody>
+      <tfoot>
+        <tr><td colspan="7"><div style="display: flex; align-items: center;">Showing 1–6 of 128<div class="pages"><button class="pgbtn">‹</button><button class="pgbtn active">1</button><button class="pgbtn">2</button><button class="pgbtn">3</button><button class="pgbtn">…</button><button class="pgbtn">22</button><button class="pgbtn">›</button></div></div></td></tr>
+      </tfoot>
+    </table>
+  </div>
+
+  <p class="small" style="color: var(--fg-3); max-width: 720px;">Headers sort. Sticky on long tables. Multi-select via checkbox, shift-click for range. Bulk-action bar slides in from below when ≥1 row selected. Cozy density default; compact for >50 row screens.</p>
+</div>
+
+</body>
+</html>

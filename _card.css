@@ -1,0 +1,74 @@
+/* Shared styles for design system preview cards.
+   Each card is sized roughly 700×{150-400}px, no chrome — just the specimen. */
+
+@import url("../colors_and_type.css");
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  padding: 0;
+  background: var(--paper);
+  font-family: var(--font-body);
+  color: var(--fg-1);
+  font-weight: 300;
+  font-size: 16px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+.card {
+  padding: 28px 32px;
+  min-height: 100%;
+}
+
+.card.tight   { padding: 20px 24px; }
+.card.padded  { padding: 36px 40px; }
+.card.dark    { background: var(--obsidian); color: var(--fg-on-dark-1); }
+
+.row { display: flex; align-items: center; gap: 16px; }
+.col { display: flex; flex-direction: column; gap: 12px; }
+.wrap { flex-wrap: wrap; }
+
+.eyebrow {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.75px;
+  text-transform: uppercase;
+  color: var(--fg-3);
+  font-weight: 400;
+}
+.card.dark .eyebrow { color: var(--fg-on-dark-3); }
+
+.swatch {
+  border-radius: 12px;
+  border: 1px solid var(--hairline);
+}
+.swatch.lg  { width: 88px; height: 88px; }
+.swatch.md  { width: 64px; height: 64px; }
+.swatch.sm  { width: 40px; height: 40px; }
+.swatch.xs  { width: 24px; height: 24px; border-radius: 6px; }
+
+.token-name {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.4px;
+  color: var(--fg-2);
+  text-transform: lowercase;
+}
+.token-hex {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.4px;
+  color: var(--fg-3);
+}
+.token-label {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: 15px;
+  letter-spacing: -0.2px;
+  color: var(--fg-1);
+}
+.card.dark .token-label { color: var(--fg-on-dark-1); }
+.card.dark .token-name  { color: var(--fg-on-dark-2); }
+.card.dark .token-hex   { color: var(--fg-on-dark-3); }

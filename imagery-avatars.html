@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<!-- @dsCard group="Brand" name="Imagery · Avatar & placeholder treatments" subtitle="Initial avatars · project tiles · image slot placeholders" -->
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Avatars & placeholders</title>
+<link rel="stylesheet" href="_card.css">
+<style>
+  .panel { background: var(--lift); border: 1px solid var(--hairline); border-radius: 14px; padding: 18px 20px; }
+  h5 { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.7px; text-transform: uppercase; color: var(--fg-3); margin: 0 0 14px; }
+
+  /* Initial avatars on brand gradients */
+  .row-av { display: flex; gap: 14px; flex-wrap: wrap; align-items: center; }
+  .av { width: 56px; height: 56px; border-radius: 999px; display: grid; place-items: center; font-family: var(--font-display); font-weight: 500; font-size: 22px; color: #fff; }
+  .av.mesh { background: linear-gradient(150deg, var(--solar), var(--blush)); }
+  .av.peach-orange { background: linear-gradient(150deg, var(--amber), var(--blush)); }
+  .av.amber { background: linear-gradient(150deg, var(--amber), var(--solar)); }
+  .av.coral { background: linear-gradient(150deg, var(--solar), var(--blush)); }
+  .av.dark { background: var(--ink); }
+  .av.orchid { background: var(--orchid); color: var(--ink); }
+  .av.mint { background: var(--mint); color: var(--ink); }
+
+  /* Project / kit thumbnails */
+  .thumbs { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
+  .thumb { aspect-ratio: 16/10; border-radius: 12px; position: relative; overflow: hidden; display: flex; align-items: flex-end; padding: 12px; }
+  .thumb.t1 { background: var(--mesh-warm); }
+  .thumb.t2 { background: linear-gradient(180deg, var(--peach), var(--blush)); }
+  .thumb.t3 { background: var(--orchid); }
+  .thumb.t4 { background: var(--ink) radial-gradient(60% 50% at 30% 30%, var(--blush), transparent); }
+  .thumb b { font-family: var(--font-display); font-weight: 500; font-size: 13px; color: #fff; }
+  .thumb.t3 b { color: var(--ink); }
+  .thumb-init { position: absolute; top: 12px; left: 12px; font-family: var(--font-mono); font-size: 10px; color: rgba(255,255,255,0.75); letter-spacing: 0.4px; }
+  .thumb.t3 .thumb-init { color: rgba(35,31,35,0.55); }
+
+  /* Image placeholder (the empty slot pattern, used outside design system) */
+  .ph-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; }
+  .ph { aspect-ratio: 1; background: repeating-linear-gradient(135deg, var(--paper-warm) 0 14px, var(--paper) 14px 28px); border: 1px solid var(--hairline); border-radius: 12px; display: grid; place-items: center; position: relative; }
+  .ph .tag { font-family: var(--font-mono); font-size: 10px; color: var(--fg-3); padding: 4px 8px; background: var(--lift); border: 1px solid var(--hairline); border-radius: 6px; letter-spacing: 0.3px; text-transform: uppercase; }
+  .ph .corner { position: absolute; top: 8px; right: 8px; font-family: var(--font-mono); font-size: 9px; color: var(--fg-3); }
+
+  .rules { display: grid; grid-template-columns: 1fr 1fr; gap: 10px 18px; }
+  .rules p { font-size: 12px; color: var(--fg-2); margin: 0; line-height: 1.55; }
+  .rules p b { color: var(--ink); font-weight: 500; }
+</style>
+</head>
+<body>
+
+<div class="card col" style="gap: 16px;">
+  <p class="eyebrow">Avatars & placeholders · when you don't have a photo yet</p>
+
+  <div class="panel">
+    <h5>Initial avatars · warm-spectrum gradient, hashed by name</h5>
+    <div class="row-av">
+      <span class="av mesh">D</span>
+      <span class="av peach-orange">M</span>
+      <span class="av amber">A</span>
+      <span class="av coral">K</span>
+      <span class="av dark">JC</span>
+      <span class="av orchid">SR</span>
+      <span class="av mint">VN</span>
+    </div>
+  </div>
+
+  <div class="panel">
+    <h5>Project / kit thumbnails · when no preview exists</h5>
+    <div class="thumbs">
+      <div class="thumb t1"><span class="thumb-init">QL · 02</span><b>Q4 Launch</b></div>
+      <div class="thumb t2"><span class="thumb-init">AS · 24</span><b>Always-on</b></div>
+      <div class="thumb t3"><span class="thumb-init">BR · 09</span><b>Brand Refresh</b></div>
+      <div class="thumb t4"><span class="thumb-init">CL · 07</span><b>Civic launch</b></div>
+    </div>
+  </div>
+
+  <div class="panel">
+    <h5>Image slot · placeholder for unfilled imagery</h5>
+    <div class="ph-grid">
+      <div class="ph"><span class="tag">team photo</span><span class="corner">1080 × 1080</span></div>
+      <div class="ph"><span class="tag">product shot</span><span class="corner">16:9</span></div>
+      <div class="ph"><span class="tag">customer logo</span><span class="corner">160w</span></div>
+    </div>
+  </div>
+
+  <div class="panel">
+    <h5>Rules</h5>
+    <div class="rules">
+      <p><b>Hash initials by name.</b> Same person, same color, every surface. Predictability beats personalization.</p>
+      <p><b>Two letters max.</b> "DC" for Dani Castillo; "D" for one-word names. Never three.</p>
+      <p><b>Project tile = palette story.</b> Pick one of mesh / peach-coral / orchid / dark-magenta and stick to it for that project's life.</p>
+      <p><b>Placeholders are diagonal stripes.</b> Never grey rectangles, never broken-image icons. Always labeled with what goes there.</p>
+      <p><b>Don't mix mesh and pastels in the same lockup.</b> Choose either the warm spectrum or the feature pastel — not both.</p>
+      <p><b>When in doubt, ask.</b> A real photo from the user beats every generated stand-in. Leave the slot empty and prompt for an upload.</p>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

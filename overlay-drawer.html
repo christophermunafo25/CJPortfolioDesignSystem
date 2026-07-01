@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<!-- @dsCard group="Components" name="Overlay · Drawer" subtitle="Right drawer · inspector pattern" -->
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Drawer</title>
+<link rel="stylesheet" href="_card.css">
+<style>
+  .frame { position: relative; height: 460px; background: var(--paper); border: 1px solid var(--hairline); border-radius: 14px; overflow: hidden; display: flex; }
+  .scrim { position: absolute; inset: 0; background: rgba(35,31,35,0.32); z-index: 1; }
+  .drawer { position: absolute; top: 0; right: 0; bottom: 0; width: 420px; background: var(--lift); box-shadow: var(--shadow-e4); z-index: 2; display: flex; flex-direction: column; }
+  .drawer header { padding: 16px 20px; border-bottom: 1px solid var(--hairline); display: flex; justify-content: space-between; align-items: center; }
+  .drawer header h3 { font-family: var(--font-display); font-size: 16px; font-weight: 500; margin: 0; color: var(--ink); }
+  .drawer header .x { color: var(--fg-3); cursor: pointer; }
+  .drawer-body { flex: 1; overflow: auto; padding: 18px 20px; display: flex; flex-direction: column; gap: 18px; }
+  .drawer footer { padding: 14px 20px; border-top: 1px solid var(--hairline); display: flex; gap: 8px; justify-content: flex-end; background: var(--paper); }
+  .field { display: flex; flex-direction: column; gap: 6px; }
+  .field label { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.7px; text-transform: uppercase; color: var(--fg-3); }
+  .field .input { width: 100%; padding: 10px 14px; border-radius: 10px; background: var(--lift); border: 1px solid var(--hairline); font-family: var(--font-body); font-size: 14px; outline: none; }
+  .btn { padding: 9px 16px; border-radius: 8px; font-family: var(--font-body); font-size: 14px; cursor: pointer; border: none; }
+  .btn.primary { background: var(--ink); color: var(--fg-on-dark-1); }
+  .btn.ghost { background: transparent; color: var(--ink); }
+  .bg { padding: 24px; opacity: 0.6; }
+  .bg h2 { font-family: var(--font-display); font-size: 24px; color: var(--ink); margin: 0 0 12px; }
+  .bg .list { display: flex; flex-direction: column; gap: 8px; }
+  .bg .item { padding: 14px; background: var(--lift); border: 1px solid var(--hairline); border-radius: 12px; font-size: 13px; color: var(--ink); }
+  .seg-tag { display: inline-flex; gap: 6px; align-items: center; padding: 4px 8px; background: rgba(35,31,35,0.06); border-radius: 999px; font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.3px; color: var(--ink); }
+</style>
+</head>
+<body>
+
+<div class="card col" style="gap: 14px;">
+  <p class="eyebrow">Drawer · right-anchored, properties / inspector pattern</p>
+
+  <div class="frame">
+    <div class="bg" style="flex: 1;">
+      <h2>Generations</h2>
+      <div class="list">
+        <div class="item">"Replicate your team" — square — 4 variants</div>
+        <div class="item">Q4 announce — 9 IG posts</div>
+        <div class="item">CTA refresh — landing hero · 3 directions</div>
+      </div>
+    </div>
+    <div class="scrim"></div>
+    <aside class="drawer">
+      <header>
+        <h3>Edit generation</h3>
+        <span class="x">×</span>
+      </header>
+      <div class="drawer-body">
+        <div class="field">
+          <label>Title</label>
+          <input class="input" value="Q4 announce · IG post 03" />
+        </div>
+        <div class="field">
+          <label>Voice</label>
+          <input class="input" value="Warm · confident · plainspoken" />
+        </div>
+        <div class="field">
+          <label>Brand kit</label>
+          <div style="display: flex; gap: 6px; flex-wrap: wrap;">
+            <span class="seg-tag">Apex Civic v3.2</span>
+            <span class="seg-tag">Warm spectrum</span>
+            <span class="seg-tag">Stack Sans</span>
+          </div>
+        </div>
+        <div class="field">
+          <label>Format</label>
+          <div style="display: flex; gap: 6px;">
+            <span style="padding: 8px 14px; border-radius: 8px; background: var(--ink); color: var(--fg-on-dark-1); font-size: 13px;">1080 × 1350</span>
+            <span style="padding: 8px 14px; border-radius: 8px; background: var(--paper-warm); color: var(--fg-2); font-size: 13px;">1080 × 1080</span>
+            <span style="padding: 8px 14px; border-radius: 8px; background: var(--paper-warm); color: var(--fg-2); font-size: 13px;">1920 × 1080</span>
+          </div>
+        </div>
+        <div class="field">
+          <label>Notes</label>
+          <textarea class="input" style="min-height: 80px;">Reuse the mesh hero, swap accent to mint for the AI announce moment.</textarea>
+        </div>
+      </div>
+      <footer>
+        <button class="btn ghost">Cancel</button>
+        <button class="btn primary">Save & regenerate</button>
+      </footer>
+    </aside>
+  </div>
+
+  <p class="small" style="color: var(--fg-3); max-width: 700px;">Right drawer for inspector / edit. Bottom drawer (sheet) for mobile or contextual filters. Stays mounted; transitions in with --ease-entrance --dur-base. Page underneath stays scrollable when scrim is omitted (passive drawer).</p>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<!-- @dsCard group="Spacing" name="Foundations · Elevation & z-index" subtitle="Shadow tiers paired with z-index scale" -->
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Elevation</title>
+<link rel="stylesheet" href="_card.css">
+<style>
+  .stack { position: relative; height: 320px; background: var(--paper); border: 1px solid var(--hairline); border-radius: 12px; overflow: hidden; padding: 24px; }
+  .ev { position: absolute; padding: 14px 18px; background: var(--lift); border-radius: 12px; font-family: var(--font-mono); font-size: 11px; color: var(--fg-2); display: flex; gap: 12px; align-items: center; }
+  .ev b { font-weight: 500; color: var(--ink); }
+  .ev1 { top: 24px; left: 24px; box-shadow: var(--shadow-e1); }
+  .ev2 { top: 64px; left: 64px; box-shadow: var(--shadow-e2); }
+  .ev3 { top: 104px; left: 104px; box-shadow: var(--shadow-e3); }
+  .ev4 { top: 144px; left: 144px; box-shadow: var(--shadow-e4); }
+  .ev5 { top: 184px; left: 184px; box-shadow: var(--shadow-e5); }
+  .zr   { display: grid; grid-template-columns: 80px 1fr 1fr; gap: 8px 16px; align-items: center; padding: 8px 14px; border-bottom: 1px solid var(--hairline); }
+  .zr:last-child { border-bottom: 0; }
+  .zr-z { font-family: var(--font-mono); font-size: 12px; color: var(--solar); }
+  .zr-name { font-family: var(--font-mono); font-size: 11px; color: var(--ink); }
+  .zr-use { font-size: 12px; color: var(--fg-2); }
+</style>
+</head>
+<body>
+
+<div class="card col" style="gap: 18px;">
+  <p class="eyebrow">Elevation · shadow + z-index, in lockstep</p>
+
+  <div class="stack">
+    <div class="ev ev1"><b>e1</b><span>--shadow-e1</span><span style="opacity: 0.6;">inputs · resting cards</span></div>
+    <div class="ev ev2"><b>e2</b><span>--shadow-e2</span><span style="opacity: 0.6;">cards · panels</span></div>
+    <div class="ev ev3"><b>e3</b><span>--shadow-e3</span><span style="opacity: 0.6;">popover · dropdown</span></div>
+    <div class="ev ev4"><b>e4</b><span>--shadow-e4</span><span style="opacity: 0.6;">modal</span></div>
+    <div class="ev ev5"><b>e5</b><span>--shadow-e5</span><span style="opacity: 0.6;">command palette</span></div>
+  </div>
+
+  <div style="background: var(--lift); border: 1px solid var(--hairline); border-radius: 12px; overflow: hidden;">
+    <p class="eyebrow" style="padding: 12px 14px 8px; color: var(--fg-3);">Z-index scale</p>
+    <div class="zr"><span class="zr-z">0</span><span class="zr-name">--z-base</span><span class="zr-use">page content</span></div>
+    <div class="zr"><span class="zr-z">10</span><span class="zr-name">--z-raised</span><span class="zr-use">hover-lifted cards</span></div>
+    <div class="zr"><span class="zr-z">100</span><span class="zr-name">--z-sticky</span><span class="zr-use">sticky topbar, sub-nav</span></div>
+    <div class="zr"><span class="zr-z">200</span><span class="zr-name">--z-dropdown</span><span class="zr-use">menus, comboboxes, popovers</span></div>
+    <div class="zr"><span class="zr-z">300</span><span class="zr-name">--z-overlay</span><span class="zr-use">drawer scrim, lightbox</span></div>
+    <div class="zr"><span class="zr-z">400</span><span class="zr-name">--z-modal</span><span class="zr-use">modal dialog</span></div>
+    <div class="zr"><span class="zr-z">500</span><span class="zr-name">--z-toast</span><span class="zr-use">toast / snackbar</span></div>
+    <div class="zr"><span class="zr-z">600</span><span class="zr-name">--z-tooltip</span><span class="zr-use">tooltip — always on top</span></div>
+  </div>
+</div>
+
+</body>
+</html>

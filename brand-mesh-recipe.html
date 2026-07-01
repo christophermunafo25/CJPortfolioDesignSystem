@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<!-- @dsCard group="Brand" name="Mesh construction" subtitle="How the mesh is built — 6 radial nodes, positions, grain layer" viewport="700x260" -->
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Mesh construction</title>
+<link rel="stylesheet" href="_card.css">
+<style>
+  .recipe { font-family: var(--font-mono); font-size: 11px; color: var(--fg-2); letter-spacing: 0.3px; }
+  .recipe .row-r { display: flex; align-items: center; gap: 8px; }
+  .recipe .sw { display:inline-block; width:10px; height:10px; border-radius:2px; flex-shrink: 0; }
+  .recipe .band { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.75px; text-transform: uppercase; color: var(--fg-3); margin-top: 6px; }
+</style>
+</head>
+<body>
+
+<div class="card col" style="gap: 18px;">
+  <p class="eyebrow">Construction · three colors, three bands · amber → solar → blush</p>
+  <div class="row" style="gap: 20px; align-items: center;">
+    <div class="mesh-warm" style="width: 240px; height: 240px; border-radius: 14px; flex-shrink: 0;"></div>
+    <div class="col recipe" style="gap: 4px; flex: 1;">
+      <div class="band">Top band · amber</div>
+      <div class="row-r"><span class="sw" style="background:#FF8300;"></span>amber · 82% 6% · 90×75</div>
+      <div class="row-r"><span class="sw" style="background:#FF8300;"></span>amber · 22% 14% · 85×70</div>
+
+      <div class="band">Middle band · solar</div>
+      <div class="row-r"><span class="sw" style="background:#FF3F00;"></span>solar · 58% 42% · 90×75</div>
+      <div class="row-r"><span class="sw" style="background:#FF3F00;"></span>solar · 8% 52% · 80×65</div>
+      <div class="row-r"><span class="sw" style="background:#FF3F00;"></span>solar · 92% 60% · 75×65</div>
+
+      <div class="band">Bottom band · blush</div>
+      <div class="row-r"><span class="sw" style="background:#FF5A72;"></span>blush · 28% 86% · 80×65</div>
+      <div class="row-r"><span class="sw" style="background:#FF5A72;"></span>blush · 82% 96% · 70×60</div>
+
+      <div style="margin-top: 8px; color: var(--fg-3);">base · linear 180deg · #FF8300 → #FF3F00 → #FF5A72</div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

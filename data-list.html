@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<!-- @dsCard group="Components" name="Data · List items" subtitle="Single-line · two-line · with thumbnail · with avatar" -->
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>List items</title>
+<link rel="stylesheet" href="_card.css">
+<style>
+  .list { background: var(--lift); border: 1px solid var(--hairline); border-radius: 12px; overflow: hidden; }
+  .list > div { display: flex; align-items: center; gap: 14px; padding: 12px 16px; border-bottom: 1px solid var(--hairline); cursor: pointer; }
+  .list > div:last-child { border-bottom: 0; }
+  .list > div:hover { background: var(--paper); }
+  .lead { width: 36px; height: 36px; border-radius: 8px; flex-shrink: 0; display: grid; place-items: center; color: #fff; font-family: var(--font-display); font-weight: 500; font-size: 14px; }
+  .lead-mesh { background: var(--mesh-warm); }
+  .lead-mint { background: var(--mint); color: var(--ink); }
+  .lead-sky  { background: var(--sky); color: var(--ink); }
+  .lead-orchid { background: var(--orchid); color: var(--ink); }
+  .lead-sand { background: var(--sand); color: var(--ink); }
+  .lead-peach { background: var(--peach); color: var(--ink); }
+  .body { flex: 1; min-width: 0; }
+  .body .t { font-size: 14px; font-weight: 400; color: var(--ink); }
+  .body .s { font-size: 12px; color: var(--fg-3); margin-top: 2px; }
+  .body .s b { color: var(--ink); font-weight: 500; }
+  .meta { font-family: var(--font-mono); font-size: 11px; color: var(--fg-3); flex-shrink: 0; }
+  .pill { padding: 3px 8px; border-radius: 999px; font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.3px; background: var(--paper-warm); color: var(--ink); }
+  .group { display: flex; flex-direction: column; gap: 10px; }
+  .group h5 { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.7px; text-transform: uppercase; color: var(--fg-3); margin: 0 0 4px; }
+  .chev { color: var(--fg-3); }
+  .thumb { width: 56px; height: 40px; border-radius: 6px; flex-shrink: 0; background: var(--paper-warm); position: relative; overflow: hidden; }
+  .thumb.m { background: var(--mesh-warm); }
+</style>
+</head>
+<body>
+
+<div class="card col" style="gap: 22px;">
+  <p class="eyebrow">Lists · single-line · two-line · with thumbnail · with avatar</p>
+
+  <div class="group">
+    <h5>Single-line · projects</h5>
+    <div class="list">
+      <div><span class="lead lead-mesh">QL</span><div class="body"><div class="t">Q4 Launch Campaign</div></div><span class="pill">Live</span><span class="chev">›</span></div>
+      <div><span class="lead lead-orchid">AS</span><div class="body"><div class="t">Always-on Social</div></div><span class="pill">Draft</span><span class="chev">›</span></div>
+      <div><span class="lead lead-mint">BR</span><div class="body"><div class="t">Brand Refresh ‘26</div></div><span class="pill">In review</span><span class="chev">›</span></div>
+    </div>
+  </div>
+
+  <div class="group">
+    <h5>Two-line · activity feed</h5>
+    <div class="list">
+      <div><span class="lead lead-peach">D</span><div class="body"><div class="t">Dani regenerated <b>"Replicate your team"</b></div><div class="s">4 variants · 1080×1350 · matched Apex Civic v3.2</div></div><span class="meta">2m ago</span></div>
+      <div><span class="lead lead-sky">M</span><div class="body"><div class="t">Mira approved 6 drafts in <b>Q4 Launch</b></div><div class="s">Ready for the Tuesday post window.</div></div><span class="meta">14m ago</span></div>
+      <div><span class="lead lead-sand">A</span><div class="body"><div class="t">Aiden left feedback on <b>landing hero v3</b></div><div class="s">"Try the mint accent on the badge instead of mesh."</div></div><span class="meta">38m ago</span></div>
+      <div><span class="lead lead-orchid">DC</span><div class="body"><div class="t">Design Connector synced 14 new tokens from Figma</div><div class="s">+8 color · +6 type · 0 conflicts</div></div><span class="meta">1h ago</span></div>
+    </div>
+  </div>
+
+  <div class="group">
+    <h5>With thumbnail · recent generations</h5>
+    <div class="list">
+      <div><div class="thumb m"></div><div class="body"><div class="t">Q4 Launch — hero variant A</div><div class="s">1920 × 1080 · launch site</div></div><span class="meta">2h</span><span class="chev">›</span></div>
+      <div><div class="thumb" style="background: var(--peach);"></div><div class="body"><div class="t">Always-on · weekly slot 24</div><div class="s">1080 × 1080 · IG feed</div></div><span class="meta">3d</span><span class="chev">›</span></div>
+      <div><div class="thumb" style="background: var(--orchid);"></div><div class="body"><div class="t">Brand refresh — wordmark lockup</div><div class="s">SVG · brand-refresh</div></div><span class="meta">1w</span><span class="chev">›</span></div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
