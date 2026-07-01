@@ -1,0 +1,12 @@
+/* ==========================================================================
+   SocialPaint — root stylesheet
+   Single entry point for consumers: link this one file to pull in the brand's
+   color tokens, typography tokens, fonts, and semantic element defaults.
+
+   <link rel="stylesheet" href="/styles.css">
+
+   (preview/_card.css and ui_kits/marketing-site/kit.css are context-scoped
+   stylesheets, intentionally not imported here.)
+   ========================================================================== */
+
+@import url("./colors_and_type.css");
